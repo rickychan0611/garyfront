@@ -1,0 +1,3275 @@
+{
+  "orders": [
+      {
+          "id": 5579682447444,
+          "name": "#26645",
+          "created_at": "2025-08-19T20:30:16Z",
+          "customer": {
+              "first_name": "grace",
+              "last_name": "dela cruz"
+          },
+          "line_items": [
+              {
+                  "id": 13786061406292,
+                  "name": "Tiramisu (can add durian)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday RJ!"
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755635164459&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 28 Aug 2025&DT=4:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Add Durian?",
+                          "value": "No Durian"
+                      }
+                  ]
+              },
+              {
+                  "id": 13786061439060,
+                  "name": "Tip",
+                  "quantity": 1,
+                  "properties": [],
+                  "selectedOptions": []
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755635164459"
+              },
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "60.0 CAD"
+      },
+      {
+          "id": 5578826743892,
+          "name": "#26635",
+          "created_at": "2025-08-19T01:41:17Z",
+          "customer": {
+              "first_name": "Cheryl",
+              "last_name": "Yip"
+          },
+          "line_items": [
+              {
+                  "id": 13784382275668,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755567564043&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:30 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "4\" (2-3 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              },
+              {
+                  "id": 13784382308436,
+                  "name": "NEW! Mango Ice Cream Pint (Limited Summer Release)",
+                  "quantity": 1,
+                  "properties": [],
+                  "selectedOptions": [
+                      {
+                          "name": "Title",
+                          "value": "Default Title"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755567564043"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "59.65 CAD"
+      },
+      {
+          "id": 5578786340948,
+          "name": "#26633",
+          "created_at": "2025-08-19T00:58:30Z",
+          "customer": {
+              "first_name": "Mary",
+              "last_name": "Koehle"
+          },
+          "line_items": [
+              {
+                  "id": 13784300683348,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755565014138&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:30 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              },
+              {
+                  "id": 13784300716116,
+                  "name": "Tip",
+                  "quantity": 1,
+                  "properties": [],
+                  "selectedOptions": []
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755565014138"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "63.8 CAD"
+      },
+      {
+          "id": 5578768384084,
+          "name": "#26632",
+          "created_at": "2025-08-19T00:38:17Z",
+          "customer": {
+              "first_name": "Fion",
+              "last_name": "Kou"
+          },
+          "line_items": [
+              {
+                  "id": 13784264998996,
+                  "name": "Durian Cake wrapped with Mangoes (Seasonal Spring - Summer)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755559734871&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:30 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "4\" (2-3 servings)"
+                      },
+                      {
+                          "name": "Add Extra Durian (180g per Unit)",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755559734871"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "53.0 CAD"
+      },
+      {
+          "id": 5578750230612,
+          "name": "#26631",
+          "created_at": "2025-08-19T00:19:23Z",
+          "customer": {
+              "first_name": "Ellie",
+              "last_name": "Watchorna"
+          },
+          "line_items": [
+              {
+                  "id": 13784226267220,
+                  "name": "NEW! Mango Ice Cream Pint (Limited Summer Release)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755562614889&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:30 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Title",
+                          "value": "Default Title"
+                      }
+                  ]
+              },
+              {
+                  "id": 13784226299988,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755562614889"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "71.65 CAD"
+      },
+      {
+          "id": 5578739056724,
+          "name": "#26630",
+          "created_at": "2025-08-19T00:07:16Z",
+          "customer": {
+              "first_name": "Alma",
+              "last_name": "Mcintosh"
+          },
+          "line_items": [
+              {
+                  "id": 13784202248276,
+                  "name": "Fresh Fruit Cake (Fruit varies)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755561882381&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=4:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "8\" (10-14 servings)"
+                      },
+                      {
+                          "name": "Happy Birthday Topper (Random)",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755561882381"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "62.0 CAD"
+      },
+      {
+          "id": 5578644684884,
+          "name": "#26629",
+          "created_at": "2025-08-18T22:28:06Z",
+          "customer": {
+              "first_name": "Michelle",
+              "last_name": "Lum"
+          },
+          "line_items": [
+              {
+                  "id": 13784009539668,
+                  "name": "Durian Cake wrapped with Mangoes (Seasonal Spring - Summer)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday Janette!"
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755555860589&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:30 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Add Extra Durian (180g per Unit)",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755555860589"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "68.0 CAD"
+      },
+      {
+          "id": 5577866182740,
+          "name": "#26625",
+          "created_at": "2025-08-18T06:06:48Z",
+          "customer": {
+              "first_name": "Justin",
+              "last_name": "Walker"
+          },
+          "line_items": [
+              {
+                  "id": 13782457974868,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday Yuli"
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755495280194&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:30 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "4\" (2-3 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              },
+              {
+                  "id": 13782458007636,
+                  "name": "Pandan Coconut Cake-in-a-jar",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755495218845&LID=mrMZPBbAGYBxgGKey3Qxmk"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Title",
+                          "value": "Default Title"
+                      }
+                  ]
+              },
+              {
+                  "id": 13782458040404,
+                  "name": "Tip",
+                  "quantity": 1,
+                  "properties": [],
+                  "selectedOptions": []
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755495280194"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "61.67 CAD"
+      },
+      {
+          "id": 5577844326484,
+          "name": "#26623",
+          "created_at": "2025-08-18T05:36:00Z",
+          "customer": {
+              "first_name": "Sabrina",
+              "last_name": "Shum"
+          },
+          "line_items": [
+              {
+                  "id": 13782415147092,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755495296964&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:00 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              },
+              {
+                  "id": 13782415179860,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755494745066&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:00 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "8\" (10-14 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:00 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:00 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755495296964"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "148.0 CAD"
+      },
+      {
+          "id": 5577803661396,
+          "name": "#26622",
+          "created_at": "2025-08-18T04:54:36Z",
+          "customer": {
+              "first_name": "patrick",
+              "last_name": "ross"
+          },
+          "line_items": [
+              {
+                  "id": 13782337355860,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755492752586&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=4:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755492752586"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "58.0 CAD"
+      },
+      {
+          "id": 5577797795924,
+          "name": "#26621",
+          "created_at": "2025-08-18T04:45:17Z",
+          "customer": {
+              "first_name": "Tommy",
+              "last_name": "Lee"
+          },
+          "line_items": [
+              {
+                  "id": 13782325330004,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755492204186&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:00 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:00 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:00 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755492204186"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "58.0 CAD"
+      },
+      {
+          "id": 5577793110100,
+          "name": "#26620",
+          "created_at": "2025-08-18T04:38:04Z",
+          "customer": {
+              "first_name": "Will",
+              "last_name": "Wong"
+          },
+          "line_items": [
+              {
+                  "id": 13782316384340,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755491204981&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:30 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755491204981"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "58.0 CAD"
+      },
+      {
+          "id": 5577752215636,
+          "name": "#26619",
+          "created_at": "2025-08-18T03:52:12Z",
+          "customer": {
+              "first_name": "Laura",
+              "last_name": "Toong"
+          },
+          "line_items": [
+              {
+                  "id": 13782235840596,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 2,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755488806059&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:30 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755488806059"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "116.0 CAD"
+      },
+      {
+          "id": 5577722036308,
+          "name": "#26618",
+          "created_at": "2025-08-18T03:21:24Z",
+          "customer": {
+              "first_name": "Lily",
+              "last_name": "Cheng"
+          },
+          "line_items": [
+              {
+                  "id": 13782169616468,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday Joel!"
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755487132596&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:30 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              },
+              {
+                  "id": 13782169649236,
+                  "name": "Tip",
+                  "quantity": 1,
+                  "properties": [],
+                  "selectedOptions": []
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755487132596"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "67.1 CAD"
+      },
+      {
+          "id": 5577640542292,
+          "name": "#26617",
+          "created_at": "2025-08-18T01:56:58Z",
+          "customer": {
+              "first_name": "Pawel",
+              "last_name": "Kisielewski"
+          },
+          "line_items": [
+              {
+                  "id": 13781998698580,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755481913063&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:30 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "4\" (2-3 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755481913063"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "46.0 CAD"
+      },
+      {
+          "id": 5577635004500,
+          "name": "#26616",
+          "created_at": "2025-08-18T01:51:11Z",
+          "customer": {
+              "first_name": "Janice",
+              "last_name": "T"
+          },
+          "line_items": [
+              {
+                  "id": 13781986017364,
+                  "name": "Coffee Cake in-a-Jar",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755481774964&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:30 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Title",
+                          "value": "Default Title"
+                      }
+                  ]
+              },
+              {
+                  "id": 13781986050132,
+                  "name": "Fresh Mango Cake in-a-Jar (Seasonal Spring - Summer)",
+                  "quantity": 1,
+                  "properties": [],
+                  "selectedOptions": [
+                      {
+                          "name": "Title",
+                          "value": "Default Title"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755481774964"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "16.02 CAD"
+      },
+      {
+          "id": 5577631727700,
+          "name": "#26615",
+          "created_at": "2025-08-18T01:47:03Z",
+          "customer": {
+              "first_name": "BETTY",
+              "last_name": "LEE"
+          },
+          "line_items": [
+              {
+                  "id": 13781980217428,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755481476198&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:30 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755481476198"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "58.0 CAD"
+      },
+      {
+          "id": 5577609347156,
+          "name": "#26614",
+          "created_at": "2025-08-18T01:22:02Z",
+          "customer": {
+              "first_name": "Vanessa",
+              "last_name": "Cox"
+          },
+          "line_items": [
+              {
+                  "id": 13781931163732,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755480010396&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:00 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "4\" (2-3 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              },
+              {
+                  "id": 13781931196500,
+                  "name": "Tip",
+                  "quantity": 1,
+                  "properties": [],
+                  "selectedOptions": []
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:00 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:00 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755480010396"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "48.3 CAD"
+      },
+      {
+          "id": 5577497772116,
+          "name": "#26611",
+          "created_at": "2025-08-17T23:28:22Z",
+          "customer": {
+              "first_name": "Etta",
+              "last_name": "Chan"
+          },
+          "line_items": [
+              {
+                  "id": 13781705883732,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755473205205&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Wed, 20 Aug 2025&DT=4:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755473205205"
+              },
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "58.0 CAD"
+      },
+      {
+          "id": 5577483485268,
+          "name": "#26610",
+          "created_at": "2025-08-17T23:13:19Z",
+          "customer": {
+              "first_name": "Amara",
+              "last_name": "Gelaude"
+          },
+          "line_items": [
+              {
+                  "id": 13781675016276,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday, Alyson!"
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755472158647&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:30 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "4\" (2-3 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755472158647"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "49.0 CAD"
+      },
+      {
+          "id": 5577472245844,
+          "name": "#26609",
+          "created_at": "2025-08-17T23:02:21Z",
+          "customer": {
+              "first_name": "Amanda",
+              "last_name": "Wong"
+          },
+          "line_items": [
+              {
+                  "id": 13781652602964,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755471570740&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "4\" (2-3 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              },
+              {
+                  "id": 13781652635732,
+                  "name": "Tip",
+                  "quantity": 1,
+                  "properties": [],
+                  "selectedOptions": []
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755471570740"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "50.6 CAD"
+      },
+      {
+          "id": 5577464938580,
+          "name": "#26608",
+          "created_at": "2025-08-17T22:54:58Z",
+          "customer": {
+              "first_name": "Amanda",
+              "last_name": "Wong"
+          },
+          "line_items": [
+              {
+                  "id": 13781637496916,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755471099356&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              },
+              {
+                  "id": 13781637529684,
+                  "name": "Tip",
+                  "quantity": 1,
+                  "properties": [],
+                  "selectedOptions": []
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755471099356"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "63.8 CAD"
+      },
+      {
+          "id": 5577422176340,
+          "name": "#26607",
+          "created_at": "2025-08-17T22:12:22Z",
+          "customer": {
+              "first_name": "Coco",
+              "last_name": "Liao"
+          },
+          "line_items": [
+              {
+                  "id": 13781549121620,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday"
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755468645632&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:00 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "4\" (2-3 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:00 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:00 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755468645632"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "49.0 CAD"
+      },
+      {
+          "id": 5577353035860,
+          "name": "#26605",
+          "created_at": "2025-08-17T21:10:05Z",
+          "customer": {
+              "first_name": "Carmen",
+              "last_name": "Xu"
+          },
+          "line_items": [
+              {
+                  "id": 13781398028372,
+                  "name": "Durian Cake wrapped with Mangoes (Seasonal Spring - Summer)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday Mommy❤️"
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755464456808&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Add Extra Durian (180g per Unit)",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755464456808"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "68.0 CAD"
+      },
+      {
+          "id": 5577342812244,
+          "name": "#26604",
+          "created_at": "2025-08-17T21:00:31Z",
+          "customer": {
+              "first_name": "Yu An",
+              "last_name": "Luo"
+          },
+          "line_items": [
+              {
+                  "id": 13781378400340,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 2,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755464190197&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:30 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755464190197"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "116.0 CAD"
+      },
+      {
+          "id": 5577332588628,
+          "name": "#26601",
+          "created_at": "2025-08-17T20:52:04Z",
+          "customer": {
+              "first_name": "Carmen",
+              "last_name": "Xu"
+          },
+          "line_items": [
+              {
+                  "id": 13781354807380,
+                  "name": "Durian Cake wrapped with Mangoes (Seasonal Spring - Summer)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday Mommy❤️"
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755463821777&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=4:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Add Extra Durian (180g per Unit)",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755463821777"
+              }
+          ],
+          "financial_status": "VOIDED",
+          "total_price": "68.0 CAD"
+      },
+      {
+          "id": 5577298346068,
+          "name": "#26599",
+          "created_at": "2025-08-17T20:25:12Z",
+          "customer": {
+              "first_name": "Sharon",
+              "last_name": "Xu"
+          },
+          "line_items": [
+              {
+                  "id": 13781285863508,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday Mommy "
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755461893945&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755461893945"
+              }
+          ],
+          "financial_status": "VOIDED",
+          "total_price": "61.0 CAD"
+      },
+      {
+          "id": 5577255944276,
+          "name": "#26597",
+          "created_at": "2025-08-17T19:49:39Z",
+          "customer": {
+              "first_name": "Asha",
+              "last_name": "Purewal"
+          },
+          "line_items": [
+              {
+                  "id": 13781192638548,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy 30th Birthday Harry! "
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755460027550&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:00 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "4\" (2-3 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:00 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:00 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755460027550"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "49.0 CAD"
+      },
+      {
+          "id": 5576604713044,
+          "name": "#26592",
+          "created_at": "2025-08-17T04:56:29Z",
+          "customer": {
+              "first_name": "Carmen",
+              "last_name": "Xu"
+          },
+          "line_items": [
+              {
+                  "id": 13779877855316,
+                  "name": "Durian Cake topped with Fresh Fruit",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday Mommy❤️"
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755406370636&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Add Extra Durian (180g per Unit)",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755406370636"
+              }
+          ],
+          "financial_status": "VOIDED",
+          "total_price": "58.0 CAD"
+      },
+      {
+          "id": 5575734952020,
+          "name": "#26586",
+          "created_at": "2025-08-16T15:03:33Z",
+          "customer": {
+              "first_name": "Loretta",
+              "last_name": "Cheung"
+          },
+          "line_items": [
+              {
+                  "id": 13778086854740,
+                  "name": "Swiss Roll (Drop down menu for flavours)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755356322893&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Flavour",
+                          "value": "Pandan Coconut"
+                      }
+                  ]
+              },
+              {
+                  "id": 13778086887508,
+                  "name": "Swiss Roll (Drop down menu for flavours)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1753923457719&LID=mrMZPBbAGYBxgGKey3Qxmk"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Flavour",
+                          "value": "Original"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755356322893"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "22.0 CAD"
+      },
+      {
+          "id": 5575185072212,
+          "name": "#26576",
+          "created_at": "2025-08-16T00:59:42Z",
+          "customer": {
+              "first_name": "Kevin",
+              "last_name": "Leivers"
+          },
+          "line_items": [
+              {
+                  "id": 13777008033876,
+                  "name": "Black Forest Cake",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755216260892&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=2:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Happy Birthday Topper (Random)",
+                          "value": "Add Cake Topper +$3"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "2:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "2:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755216260892"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "45.0 CAD"
+      },
+      {
+          "id": 5575179796564,
+          "name": "#26575",
+          "created_at": "2025-08-16T00:54:02Z",
+          "customer": {
+              "first_name": "Fong",
+              "last_name": "Yuen Shing"
+          },
+          "line_items": [
+              {
+                  "id": 13776996499540,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755305468490&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=3:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "3:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755305468490"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "58.0 CAD"
+      },
+      {
+          "id": 5575168917588,
+          "name": "#26573",
+          "created_at": "2025-08-16T00:42:46Z",
+          "customer": {
+              "first_name": "Benson",
+              "last_name": "Yim"
+          },
+          "line_items": [
+              {
+                  "id": 13776975036500,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday Anna!"
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755304822985&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=2:30 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "2:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "2:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755304822985"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "61.0 CAD"
+      },
+      {
+          "id": 5575105478740,
+          "name": "#26564",
+          "created_at": "2025-08-15T23:37:13Z",
+          "customer": {
+              "first_name": "Meghan",
+              "last_name": "Chan"
+          },
+          "line_items": [
+              {
+                  "id": 13776843866196,
+                  "name": "Durian Cake wrapped with Mangoes (Seasonal Spring - Summer)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": "Happy Birthday Benson!"
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755300914588&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=2:30 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "Add Message +$3"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "4\" (2-3 servings)"
+                      },
+                      {
+                          "name": "Add Extra Durian (180g per Unit)",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "2:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "2:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755300914588"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "56.0 CAD"
+      },
+      {
+          "id": 5575010254932,
+          "name": "#26558",
+          "created_at": "2025-08-15T22:06:54Z",
+          "customer": {
+              "first_name": "Nina",
+              "last_name": "Liang"
+          },
+          "line_items": [
+              {
+                  "id": 13776649289812,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755295311416&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=2:30 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "2:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "2:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755295311416"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "58.0 CAD"
+      },
+      {
+          "id": 5574996918356,
+          "name": "#26556",
+          "created_at": "2025-08-15T21:55:18Z",
+          "customer": {
+              "first_name": "Thi Thuy Hang",
+              "last_name": "Tran"
+          },
+          "line_items": [
+              {
+                  "id": 13776620093524,
+                  "name": "Durian Cake wrapped with Mangoes (Seasonal Spring - Summer)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755294725969&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=4:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Add Extra Durian (180g per Unit)",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755294725969"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "65.0 CAD"
+      },
+      {
+          "id": 5574891372628,
+          "name": "#26530",
+          "created_at": "2025-08-15T20:24:08Z",
+          "customer": {
+              "first_name": "Cecilia",
+              "last_name": "Leung"
+          },
+          "line_items": [
+              {
+                  "id": 13776398319700,
+                  "name": "Durian Cake topped with Fresh Fruit",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755289090873&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=2:30 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Add Extra Durian (180g per Unit)",
+                          "value": "6\" Add Extra 1 Unit +$10"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "2:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "2:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755289090873"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "65.0 CAD"
+      },
+      {
+          "id": 5574864207956,
+          "name": "#26519",
+          "created_at": "2025-08-15T20:00:42Z",
+          "customer": {
+              "first_name": "Stefanie",
+              "last_name": "Ng"
+          },
+          "line_items": [
+              {
+                  "id": 13776342646868,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755287966059&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=2:30 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "2:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "2:30 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755287966059"
+              }
+          ],
+          "financial_status": "PENDING",
+          "total_price": "58.0 CAD"
+      },
+      {
+          "id": 5574802669652,
+          "name": "#26505",
+          "created_at": "2025-08-15T19:10:28Z",
+          "customer": {
+              "first_name": "Liyin",
+              "last_name": "Huang"
+          },
+          "line_items": [
+              {
+                  "id": 13776214687828,
+                  "name": "Fresh Mango Cake (Limited Qty)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755284922597&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=5:30 PM - 6:00 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Gluten Free",
+                          "value": "No thanks"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "5:30 PM - 6:00 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755284922597"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "58.0 CAD"
+      },
+      {
+          "id": 5574547505236,
+          "name": "#26484",
+          "created_at": "2025-08-15T15:38:55Z",
+          "customer": {
+              "first_name": "Mandy",
+              "last_name": "Lo"
+          },
+          "line_items": [
+              {
+                  "id": 13775690989652,
+                  "name": "Organic Chestnut Cake (can add mango)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      },
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755272229791&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=2:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Add Mango? (Seasonal Spring - Summer)",
+                          "value": "No Mango"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "2:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "2:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755272229791"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "42.0 CAD"
+      },
+      {
+          "id": 5560627232852,
+          "name": "#26474",
+          "created_at": "2025-08-13T13:39:45Z",
+          "customer": {
+              "first_name": "Carol",
+              "last_name": "Koh"
+          },
+          "line_items": [
+              {
+                  "id": 13729539719252,
+                  "name": "Swiss Roll (Drop down menu for flavours)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "_instoreAppId",
+                          "value": "FT=pickup&TS=1755092267401&LID=mrMZPBbAGYBxgGKey3Qxmk&DD=Thu, 21 Aug 2025&DT=4:00 PM - 5:45 PM"
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Flavour",
+                          "value": "Pandan Coconut"
+                      }
+                  ]
+              },
+              {
+                  "id": 13729539752020,
+                  "name": "NEW! Mango Ice Cream Pint (Limited Summer Release)",
+                  "quantity": 1,
+                  "properties": [],
+                  "selectedOptions": [
+                      {
+                          "name": "Title",
+                          "value": "Default Title"
+                      }
+                  ]
+              },
+              {
+                  "id": 13729539784788,
+                  "name": "Matcha Green Tea Red Bean Cake (can be cream only)",
+                  "quantity": 1,
+                  "properties": [
+                      {
+                          "name": "Message",
+                          "value": ""
+                      }
+                  ],
+                  "selectedOptions": [
+                      {
+                          "name": "Add Chocolate Plaque Message +$3",
+                          "value": "None"
+                      },
+                      {
+                          "name": "Size",
+                          "value": "6\" (6-8 servings)"
+                      },
+                      {
+                          "name": "Red Bean?",
+                          "value": "Red Bean by default"
+                      }
+                  ]
+              }
+          ],
+          "custom_attributes": [
+              {
+                  "key": "Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Translated Order Due Date",
+                  "value": "Thu, 21 Aug 2025"
+              },
+              {
+                  "key": "Translated Order Due Time",
+                  "value": "4:00 PM - 5:45 PM"
+              },
+              {
+                  "key": "Order Fulfillment Type",
+                  "value": "Store Pickup"
+              },
+              {
+                  "key": "Order Location",
+                  "value": "Kingsway Location"
+              },
+              {
+                  "key": "Order Location Address",
+                  "value": "1022 Kingsway  Unit 7, Vancouver, Canada "
+              },
+              {
+                  "key": "Slot First Loaded TimeStamp",
+                  "value": "1755092267401"
+              }
+          ],
+          "financial_status": "PAID",
+          "total_price": "66.65 CAD"
+      }
+  ],
+  "firestoreSummary": {
+      "totalOrders": 41,
+      "ordersSavedToFirestore": 41,
+      "message": "Successfully processed 41 orders, saved 41 to Firestore"
+  }
+}

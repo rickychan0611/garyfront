@@ -1,0 +1,211 @@
+/* Print-specific styles for BatchViewPrint */
+
+@media print {
+  /* Hide non-essential elements when printing */
+  .print\\:hidden {
+    display: none !important;
+  }
+
+  /* Ensure proper page breaks */
+  .print\\:break-before {
+    page-break-before: always;
+  }
+
+  .print\\:break-after {
+    page-break-after: always;
+  }
+
+  /* Prevent page breaks inside important elements */
+  .print\\:break-inside-avoid {
+    page-break-inside: avoid;
+  }
+
+  /* Print-specific spacing */
+  .print\\:space-y-12 > * + * {
+    margin-top: 3rem !important;
+  }
+
+  .print\\:mb-12 {
+    margin-bottom: 3rem !important;
+  }
+
+  .print\\:mb-8 {
+    margin-bottom: 2rem !important;
+  }
+
+  .print\\:mb-6 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .print\\:mt-16 {
+    margin-top: 4rem !important;
+  }
+
+  .print\\:mt-12 {
+    margin-top: 3rem !important;
+  }
+
+  .print\\:mt-8 {
+    margin-top: 2rem !important;
+  }
+
+  .print\\:pt-8 {
+    padding-top: 2rem !important;
+  }
+
+  /* Print-specific padding */
+  .print\\:p-12 {
+    padding: 3rem !important;
+  }
+
+  .print\\:p-6 {
+    padding: 1.5rem !important;
+  }
+
+  .print\\:px-12 {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+
+  .print\\:px-8 {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  .print\\:px-6 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+
+  .print\\:py-6 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .print\\:py-4 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .print\\:py-3 {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  /* Print-specific text sizes */
+  .print\\:text-5xl {
+    font-size: 3rem !important;
+    line-height: 1 !important;
+  }
+
+  .print\\:text-4xl {
+    font-size: 2.25rem !important;
+    line-height: 2.5rem !important;
+  }
+
+  .print\\:text-3xl {
+    font-size: 1.875rem !important;
+    line-height: 2.25rem !important;
+  }
+
+  .print\\:text-2xl {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+  }
+
+  .print\\:text-xl {
+    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
+  }
+
+  /* Print-specific dimensions */
+  .print\\:w-20 {
+    width: 5rem !important;
+  }
+
+  .print\\:h-20 {
+    height: 5rem !important;
+  }
+
+  /* Print-specific borders */
+  .print\\:border-8 {
+    border-width: 8px !important;
+  }
+
+  .print\\:border-4 {
+    border-width: 4px !important;
+  }
+
+  .print\\:border-2 {
+    border-width: 2px !important;
+  }
+
+  /* Print-specific grid */
+  .print\\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  }
+
+  .print\\:gap-6 {
+    gap: 1.5rem !important;
+  }
+
+  /* Print-specific backgrounds */
+  .print\\:bg-green-200 {
+    background-color: #bbf7d0 !important;
+  }
+
+  .print\\:bg-green-900 {
+    color: #14532d !important;
+  }
+
+  .print\\:bg-yellow-200 {
+    background-color: #fef3c7 !important;
+  }
+
+  .print\\:bg-yellow-900 {
+    color: #92400e !important;
+  }
+
+  .print\\:bg-gray-200 {
+    background-color: #e5e7eb !important;
+  }
+
+  .print\\:bg-gray-900 {
+    color: #111827 !important;
+  }
+
+  .print\\:bg-gray-100 {
+    background-color: #f3f4f6 !important;
+  }
+
+  .print\\:bg-gray-800 {
+    background-color: #1f2937 !important;
+  }
+
+  .print\\:bg-gray-600 {
+    background-color: #4b5563 !important;
+  }
+
+  /* Print-specific cursor */
+  .print\\:cursor-default {
+    cursor: default !important;
+  }
+
+  /* Ensure good contrast for printing */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 1in;
+    size: A4;
+  }
+
+  /* Ensure backgrounds print */
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
