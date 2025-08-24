@@ -1,8 +1,10 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import moment from "moment-timezone";
 import { useOrdersStore } from '../stores/ordersStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { Order } from "../stores/ordersStore";
+import { useNavigate } from "react-router-dom";
+
 
 function toWindowISO(dateInput: Date) {
   // Start date is 30 days before the selected end date
@@ -41,10 +43,19 @@ function formatDueDate(dateString: string): string {
 
 export default function OrdersPage() {
   // Use Zustand stores
-  const { orders, loading, loadOrders } = useOrdersStore();
+  const { orders, loading, loadOrders, subscribeToOrders, subscribeToGroups } = useOrdersStore();
   const { date, dueDate, setDueDate } = useSettingsStore();
 
   const printedTag = useMemo(() => `Printed-${date}`, [date]);
+
+  // Auto-subscribe to orders when dueDate changes
+  useEffect(() => {
+    if (dueDate) {
+      console.log('OrdersPage - dueDate changed, subscribing to orders:', dueDate);
+      subscribeToOrders(dueDate);
+      subscribeToGroups(dueDate);
+    }
+  }, [dueDate]);
 
   async function load() {
     const dateObj = moment.tz(date, "YYYY-MM-DD", "America/Vancouver").toDate();
@@ -62,247 +73,328 @@ export default function OrdersPage() {
     await loadOrders(from, to, printedTag, formattedDueDate);
   }
 
+  // Shared function to generate order card HTML
+  const generateOrderCardHTML = (order: Order, showIndex = false, orderIndex = 0, totalOrders = 0) => {
+    return `
+      <div class="card">
+        <!-- Header Row -->
+        <div class="header-row">
+          <div class="order-number">Order #${order.number || 'N/A'}</div>
+          <div class="ref-number">#${order.ref_number || 'N/A'}</div>
+        </div>
+
+        <!-- Customer Name -->
+        <h3 class="customer-name">${getCustomerName(order)}</h3>
+        
+        <!-- Order Info -->
+        <div class="info-section">
+          <div class="info-item">
+            <span class="info-label">Id:</span>
+            <span class="info-value">${order.number || 'N/A'}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Phone:</span>
+            <span class="info-value">${getCustomerPhone(order) || "—"}</span>
+          </div>
+             ${order.tags && order.tags.length > 0 ? `
+           <div class="info-item">
+             <span class="info-label">Pickup Time:</span>
+             <div style="text-align: right;">
+             <span class="info-value pickup-time">${order.tags[0]}</span>
+             </br>
+             <span class="info-value pickup-time">${order.tags[1]}</span>
+             </div>
+           </div>
+           ` : ''}
+                     ${order.financial_status ? `
+           <div class="info-item">
+             <span class="info-label">Payment Status:</span>
+             <span class="info-value">${order.financial_status}</span>
+           </div>
+           ` : ''}
+          ${order.total_price ? `
+          <div class="info-item">
+            <span class="info-label">Total Price:</span>
+            <span class="info-value">$${Number(order.total_price.replace(" CAD", '')).toFixed(2)}</span>
+          </div>
+          ` : ''}
+        </div>
+
+        <!-- Items Section -->
+        <div class="items-section">
+          <div class="item-header">Order Items</div>
+          ${order.items
+        .filter(lineItem => !lineItem.productTitle.toLowerCase().includes("tip"))
+        .map(lineItem => `
+              <div class="item">
+                <div class="item-title">${lineItem.productTitle.replace(/\s*\(.*?\)\s*/g, "").trim()} ×${lineItem.quantity}</div>
+                ${lineItem.variantSize ? `<div class="item-size">Size: ${lineItem.variantSize.replace(/\s*\(.*?\)\s*/g, "").trim()}</div>` : ''}
+                ${lineItem.selectedOptions && lineItem.selectedOptions.length > 0 ? lineItem.selectedOptions.map((opt) => {
+          if (opt.name.includes("Add Chocolate Plaque Message") || opt.name.includes("Size") || opt.name.includes("Title")) return '';
+          return `<div class="item-details">${opt.name.replace(/\s*\(.*?\)\s*/g, "").trim()}: ${opt.value.replace(/\s*\(.*?\)\s*/g, "").trim()}</div>`;
+        }).join('') : ''}
+                ${lineItem.message ? `<div class="item-message">Message: ${lineItem.message}</div>` : ''}
+              </div>
+            `).join('')}
+        </div>
+
+        <!-- Note and Created Date Section -->
+        ${order.note ? `
+        <div class="note-section">
+          <div class="note-content">Note: ${order.note}</div>
+        </div>
+        ` : ''}
+
+        ${showIndex ? `
+        <!-- Card Index -->
+        <div class="card-index">
+          <span class="index-text">Page ${orderIndex + 1} / ${totalOrders}</span>
+        </div>
+        ` : ''}
+      </div>
+    `;
+  };
+
+  // Shared CSS styles for print functions
+  const getPrintStyles = (isMultiCard = false) => `
+    @media print {
+      @page {
+        margin: 0;
+        size: 80mm auto;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .no-print { display: none; }
+      ${isMultiCard ? `
+      .card { page-break-after: always; }
+      .card:last-child { page-break-after: auto; }
+      ` : ''}
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: ${isMultiCard ? '0' : '10px'};
+      background: white;
+    }
+    
+    .card {
+      background: white;
+      padding: 16px;
+      max-width: 70mm;
+      margin: 0 auto;
+      ${isMultiCard ? 'page-break-inside: avoid;' : ''}
+    }
+    
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    
+    .order-number {
+      color: #374151;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    .ref-number {
+      color: #3b82f6;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    
+    .customer-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      text-align: center;
+    }
+    
+    .info-section {
+      margin: 12px 0;
+    }
+    
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 4px 0;
+      padding: 2px 0;
+      gap: 6px;
+    }
+    
+    .info-label {
+      font-size: 12px;
+      color: #6b7280;
+      font-weight: 500;
+      flex: 1;
+    }
+    
+         .info-value {
+       font-size: 12px;
+       color: #111827;
+       font-weight: 500;
+       text-align: right;
+       max-width: 50%;
+     }
+     
+     .pickup-time {
+       line-height: 1.2;
+       white-space: pre-line;
+     }
+    
+    .items-section {
+      margin: 12px 0;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 8px;
+    }
+    
+    .item-header {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    
+    .item {
+      margin: 8px 0;
+      padding: 4px 0;
+    }
+    
+    .item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 2px;
+    }
+    
+    .item-details {
+      font-size: 11px;
+      color: #6b7280;
+      margin: 2px 0;
+    }
+    
+    .item-size {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1d4ed8;
+      background: #dbeafe;
+      padding: 1px 4px;
+      border-radius: 3px;
+      display: inline-block;
+      margin: 2px 0;
+    }
+    
+    .item-message {
+      background: #fef3c7;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      color: #92400e;
+      margin: 4px 0;
+    }
+    
+    .print-controls {
+      text-align: center;
+      margin-top: ${isMultiCard ? '20px' : '16px'};
+      padding-top: ${isMultiCard ? '20px' : '16px'};
+      border-top: 1px solid #e5e7eb;
+    }
+    
+    .print-btn {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 6px;
+      font-size: 12px;
+      font-weight: 500;
+      ${!isMultiCard ? 'transition: background-color 0.2s;' : ''}
+    }
+    
+    .print-btn:hover {
+      background: #2563eb;
+    }
+    
+    .close-btn {
+      background: #6b7280;
+    }
+    
+    .close-btn:hover {
+      background: #4b5563;
+    }
+    
+    .note-section {
+      margin-top: 15px;
+    }
+    
+    .note-label {
+      font-size: 10px;
+      color: #6b7280;
+      font-weight: 600;
+    }
+    
+    .note-content {
+      font-size: 12px;
+      color: #374151;
+    }
+    
+    .created-date {
+      font-size: 10px;
+      color: #6b7280;
+    }
+    
+    .date-label {
+      font-weight: 600;
+    }
+    
+    .date-value {
+      color: #374151;
+    }
+    
+    ${isMultiCard ? `
+    .card-index {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 8px;
+    }
+    
+    .index-text {
+      font-size: 9px;
+      color: #9ca3af;
+      font-weight: 500;
+    }
+    ` : ''}
+  `;
+
   const handlePrintCard = (order: Order) => {
     // Create a new window for printing
     const printWindow = window.open('', '_blank', 'width=500,height=700');
     if (!printWindow) return;
 
-    // Create the print content that matches the card design exactly
+    // Create the print content using shared functions
     const printContent = `
       <!DOCTYPE html>
       <html>
       <head>
         <title>Order Card - ${order.number}</title>
         <style>
-          @media print {
-            @page {
-              margin: 0;
-              size: 80mm auto;
-            }
-            body {
-              margin: 0;
-              padding: 0;
-            }
-            .no-print { display: none; }
-          }
-          
-          body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 10px;
-            background: white;
-          }
-          
-          .card {
-            background: white;
-            padding: 16px;
-            max-width: 70mm;
-            margin: 0 auto;
-          }
-          
-          .header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            text-align: center;
-          }
-          
-          .order-number {
-            color: #374151;
-            font-size: 14px;
-            font-weight: 600;
-          }
-          
-          .ref-number {
-            color: #3b82f6;
-            font-size: 16px;
-            font-weight: 700;
-          }
-          
-          .customer-name {
-            font-size: 18px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 8px;
-            line-height: 1.3;
-            text-align: center;
-          }
-          
-          .info-section {
-            margin: 12px 0;
-          }
-          
-          .info-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 4px 0;
-            padding: 2px 0;
-            gap: 6px;
-          }
-          
-          .info-label {
-            font-size: 12px;
-            color: #6b7280;
-            font-weight: 500;
-            flex: 1;
-          }
-          
-          .info-value {
-            font-size: 12px;
-            color: #111827;
-            font-weight: 500;
-            text-align: right;
-            max-width: 50%;
-          }
-          
-          .items-section {
-            margin: 12px 0;
-            border-top: 1px solid #e5e7eb;
-            padding-top: 8px;
-          }
-          
-          .item-header {
-            font-size: 14px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 8px;
-            text-align: center;
-          }
-          
-          .item {
-            margin: 8px 0;
-            padding: 4px 0;
-            border-bottom: 1px solid #f3f4f6;
-          }
-          
-          .item-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 2px;
-          }
-          
-          .item-details {
-            font-size: 11px;
-            color: #6b7280;
-            margin: 2px 0;
-          }
-          
-          .item-size {
-            font-size: 12px;
-            font-weight: 700;
-            color: #1d4ed8;
-            background: #dbeafe;
-            padding: 1px 4px;
-            border-radius: 3px;
-            display: inline-block;
-            margin: 2px 0;
-          }
-          
-          .item-message {
-            background: #fef3c7;
-            padding: 4px 6px;
-            border-radius: 4px;
-            font-size: 11px;
-            color: #92400e;
-            margin: 4px 0;
-          }
-          
-          .print-controls {
-            text-align: center;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid #e5e7eb;
-          }
-          
-          .print-btn {
-            background: #3b82f6;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 0 6px;
-            font-size: 12px;
-            font-weight: 500;
-            transition: background-color 0.2s;
-          }
-          
-          .print-btn:hover {
-            background: #2563eb;
-          }
-          
-          .close-btn {
-            background: #6b7280;
-          }
-          
-          .close-btn:hover {
-            background: #4b5563;
-          }
+          ${getPrintStyles(false)}
         </style>
       </head>
       <body>
-        <div class="card">
-          <!-- Header Row -->
-          <div class="header-row">
-            <div class="order-number">Order #${order.number || 'N/A'}</div>
-            <div class="ref-number">#${order.ref_number || 'N/A'}</div>
-          </div>
-
-          <!-- Customer Name -->
-          <h3 class="customer-name">${getCustomerName(order)}</h3>
-          
-          <!-- Order Info -->
-          <div class="info-section">
-            <div class="info-item">
-              <span class="info-label">Id:</span>
-              <span class="info-value">${order.number || 'N/A'}</span>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Phone:</span>
-              <span class="info-value">${getCustomerPhone(order) || "—"}</span>
-            </div>
-            ${order.tags && order.tags.length > 0 ? `
-            <div class="info-item">
-              <span class="info-label">Pickup Time:</span>
-              <span class="info-value">${order.tags[0]} - ${order.tags[1]}</span>
-            </div>
-            ` : ''}
-            ${order.financial_status ? `
-            <div class="info-item">
-              <span class="info-label">Payment Status:</span>
-              <span class="info-value">${order.financial_status}</span>
-            </div>
-            ` : ''}
-            ${order.total_price ? `
-            <div class="info-item">
-              <span class="info-label">Total Price:</span>
-              <span class="info-value">$${Number(order.total_price.replace(" CAD", '')).toFixed(2)}</span>
-            </div>
-            ` : ''}
-          </div>
-
-          <!-- Items Section -->
-          <div class="items-section">
-            <div class="item-header">Order Items</div>
-            ${order.items
-              .filter(lineItem => !lineItem.productTitle.toLowerCase().includes("tip"))
-              .map(lineItem => `
-                <div class="item">
-                  <div class="item-title">${lineItem.productTitle.replace(/\s*\(.*?\)\s*/g, "").trim()} ×${lineItem.quantity}</div>
-                  ${lineItem.variantSize ? `<div class="item-size">Size: ${lineItem.variantSize.replace(/\s*\(.*?\)\s*/g, "").trim()}</div>` : ''}
-                  ${lineItem.selectedOptions && lineItem.selectedOptions.length > 0 ? lineItem.selectedOptions.map((opt) => {
-                    if (opt.name.includes("Add Chocolate Plaque Message") || opt.name.includes("Size") || opt.name.includes("Title")) return '';
-                    return `<div class="item-details">${opt.name.replace(/\s*\(.*?\)\s*/g, "").trim()}: ${opt.value.replace(/\s*\(.*?\)\s*/g, "").trim()}</div>`;
-                  }).join('') : ''}
-                  ${lineItem.message ? `<div class="item-message">Message: ${lineItem.message}</div>` : ''}
-                </div>
-              `).join('')}
-          </div>
-        </div>
-
+        ${generateOrderCardHTML(order, false)}
+        
         <!-- Print Controls -->
         <div class="no-print print-controls">
           <button class="print-btn" onclick="window.print()">🖨️ Print Card</button>
@@ -322,187 +414,14 @@ export default function OrdersPage() {
     const printWindow = window.open('', '_blank', 'width=600,height=800');
     if (!printWindow) return;
 
-    // Create the print content for all cards
+    // Create the print content using shared functions
     const printContent = `
       <!DOCTYPE html>
       <html>
       <head>
         <title>All Order Cards - ${date}</title>
         <style>
-          @media print {
-            @page {
-              margin: 0;
-              size: 80mm auto;
-            }
-            body {
-              margin: 0;
-              margin-top: 20px;
-              padding: 0;
-            }
-            .no-print { display: none; }
-            .card { page-break-after: always; }
-            .card:last-child { page-break-after: auto; }
-          }
-          
-          body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: white;
-          }
-          
-          .card {
-            background: white;
-            padding: 16px;
-            max-width: 70mm;
-            margin: 0 auto;
-            page-break-inside: avoid;
-          }
-          
-          .header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            text-align: center;
-          }
-          
-          .order-number {
-            color: #374151;
-            font-size: 14px;
-            font-weight: 600;
-          }
-          
-          .ref-number {
-            color: #3b82f6;
-            font-size: 16px;
-            font-weight: 700;
-          }
-          
-          .customer-name {
-            font-size: 18px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 8px;
-            line-height: 1.3;
-            text-align: center;
-          }
-          
-          .info-section {
-            margin: 12px 0;
-          }
-          
-          .info-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 4px 0;
-            padding: 2px 0;
-            gap: 6px;
-          }
-          
-          .info-label {
-            font-size: 12px;
-            color: #6b7280;
-            font-weight: 500;
-            flex: 1;
-          }
-          
-          .info-value {
-            font-size: 12px;
-            color: #111827;
-            font-weight: 500;
-            text-align: right;
-            max-width: 50%;
-          }
-          
-          .items-section {
-            margin: 12px 0;
-            border-top: 1px solid #e5e7eb;
-            padding-top: 8px;
-          }
-          
-          .item-header {
-            font-size: 14px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 8px;
-            text-align: center;
-          }
-          
-          .item {
-            margin: 8px 0;
-            padding: 4px 0;
-            border-bottom: 1px solid #f3f4f6;
-          }
-          
-          .item-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 2px;
-          }
-          
-          .item-details {
-            font-size: 11px;
-            color: #6b7280;
-            margin: 2px 0;
-          }
-          
-          .item-size {
-            font-size: 12px;
-            font-weight: 700;
-            color: #1d4ed8;
-            background: #dbeafe;
-            padding: 1px 4px;
-            border-radius: 3px;
-            display: inline-block;
-            margin: 2px 0;
-          }
-          
-          .item-message {
-            background: #fef3c7;
-            padding: 4px 6px;
-            border-radius: 4px;
-            font-size: 11px;
-            color: #92400e;
-            margin: 4px 0;
-          }
-          
-          .card-index {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 8px;
-          }
-          
-          .index-text {
-            font-size: 9px;
-            color: #9ca3af;
-            font-weight: 500;
-          }
-          
-          .print-controls {
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e7eb;
-          }
-          
-          .print-btn {
-            background: #3b82f6;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 0 6px;
-            font-size: 12px;
-            font-weight: 500;
-          }
-          
-          .close-btn {
-            background: #6b7280;
-          }
+          ${getPrintStyles(true)}
         </style>
       </head>
       <body>
@@ -512,71 +431,9 @@ export default function OrdersPage() {
           <button class="print-btn close-btn" onclick="window.close()">❌ Close</button>
         </div>
         
-                 ${orders.map((order, orderIndex) => `
-           <div class="card">
-             <!-- Header Row -->
-             <div class="header-row">
-               <div class="order-number">Order #${order.number || 'N/A'}</div>
-               <div class="ref-number">#${order.ref_number || 'N/A'}</div>
-             </div>
-
-             <!-- Customer Name -->
-             <h3 class="customer-name">${getCustomerName(order)}</h3>
-             
-             <!-- Order Info -->
-             <div class="info-section">
-               <div class="info-item">
-                 <span class="info-label">Id:</span>
-                 <span class="info-value">${order.number || 'N/A'}</span>
-               </div>
-               <div class="info-item">
-                 <span class="info-label">Phone:</span>
-                 <span class="info-value">${getCustomerPhone(order) || "—"}</span>
-               </div>
-               ${order.tags && order.tags.length > 0 ? `
-               <div class="info-item">
-                 <span class="info-label">Pickup Time:</span>
-                 <span class="info-value">${order.tags[0]} - ${order.tags[1]}</span>
-               </div>
-               ` : ''}
-               ${order.financial_status ? `
-               <div class="info-item">
-                 <span class="info-label">Payment Status:</span>
-                 <span class="info-value">${order.financial_status}</span>
-               </div>
-               ` : ''}
-               ${order.total_price ? `
-               <div class="info-item">
-                 <span class="info-label">Total Price:</span>
-                 <span class="info-value">$${Number(order.total_price.replace(" CAD", '')).toFixed(2)}</span>
-               </div>
-               ` : ''}
-             </div>
-
-             <!-- Items Section -->
-             <div class="items-section">
-               <div class="item-header">Order Items</div>
-               ${order.items
-                 .filter(lineItem => !lineItem.productTitle.toLowerCase().includes("tip"))
-                 .map(lineItem => `
-                   <div class="item">
-                     <div class="item-title">${lineItem.productTitle.replace(/\s*\(.*?\)\s*/g, "").trim()} ×${lineItem.quantity}</div>
-                     ${lineItem.variantSize ? `<div class="item-size">Size: ${lineItem.variantSize.replace(/\s*\(.*?\)\s*/g, "").trim()}</div>` : ''}
-                     ${lineItem.selectedOptions && lineItem.selectedOptions.length > 0 ? lineItem.selectedOptions.map((opt) => {
-                       if (opt.name.includes("Add Chocolate Plaque Message") || opt.name.includes("Size") || opt.name.includes("Title")) return '';
-                       return `<div class="item-details">${opt.name.replace(/\s*\(.*?\)\s*/g, "").trim()}: ${opt.value.replace(/\s*\(.*?\)\s*/g, "").trim()}</div>`;
-                     }).join('') : ''}
-                     ${lineItem.message ? `<div class="item-message">Message: ${lineItem.message}</div>` : ''}
-                   </div>
-                 `).join('')}
-             </div>
-
-             <!-- Card Index -->
-             <div class="card-index">
-               <span class="index-text">Page ${orderIndex + 1} / ${orders.length}</span>
-             </div>
-           </div>
-         `).join('')}
+        ${orders.map((order, orderIndex) =>
+      generateOrderCardHTML(order, true, orderIndex, orders.length)
+    ).join('')}
       </body>
       </html>
     `;
@@ -585,6 +442,8 @@ export default function OrdersPage() {
     printWindow.document.write(printContent);
     printWindow.document.close();
   };
+  
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen">
@@ -607,7 +466,7 @@ export default function OrdersPage() {
             disabled={loading}
             className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
           >
-            {loading ? "Loading…" : "Fetch Orders from Shopify"}
+            {loading ? "Loading…" : "Refresh Orders from Shopify"}
           </button>
           <button
             onClick={handlePrintAllCards}
@@ -615,6 +474,12 @@ export default function OrdersPage() {
             className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 disabled:opacity-50"
           >
             🖨️ Print All Cards
+          </button>
+          <button
+            onClick={() => navigate('/batch-view')}
+            className="px-4 py-2 rounded bg-blue-500 text-white"
+          >
+             👷 Batch Sheets
           </button>
         </div>
         <span className="mt-4 text-[20px] font-bold">
@@ -624,8 +489,7 @@ export default function OrdersPage() {
 
       {!orders.length && !loading && (
         <div className="text-center text-gray-500 bg-white rounded-lg shadow p-6">
-          No orders found for the date range {moment(date).subtract(30, 'days').format('YYYY-MM-DD')} to {date}
-          {dueDate && ` with due date ${formatDueDate(dueDate)}`}.
+          No orders found.
         </div>
       )}
 
@@ -666,12 +530,12 @@ export default function OrdersPage() {
                 <div className="flex justify-between">
                   <span className="font-medium">Pickup Time</span>
                   <span className="text-sm text-green-600 font-medium max-w-xs text-right">
-                    {order.tags[0]} - {order.tags[1]}
+                    {order.tags[0]} | {order.tags[1]}
                   </span>
                 </div>
               )}
 
-              {/* Display financial status */}
+                                           {/* Display financial status */}
               {order.financial_status && (
                 <div className="flex justify-between">
                   <span className="font-medium">Payment Status</span>
@@ -703,9 +567,9 @@ export default function OrdersPage() {
                       key={lineItem.id}
                       className="flex flex-col border-b pb-2 last:border-none"
                     >
-                      <div className="flex justify-between">
+                      <div className="flex justify-between items-center">
                         <span className="font-bold">{lineItem.productTitle.replace(/\s*\(.*?\)\s*/g, "").trim()}</span>
-                        <span className="text-sm text-gray-500 mt-1">
+                        <span className="text-[18px] font-bold mt-1">
                           ×{lineItem.quantity}
                         </span>
                       </div>
@@ -742,6 +606,25 @@ export default function OrdersPage() {
                   ))}
               </ul>
             </div>
+
+            {/* Note and Created Date Section */}
+            {(order.note || order.created_at) && (
+              <div className="pt-2">
+                {order.note && (
+                  <div className="">
+                    <div className="text-xs text-gray-500">
+                      Note: {order.note}
+                    </div>
+                  </div>
+                )}
+                {/* {order.created_at && (
+                  <div className="text-xs text-gray-500">
+                    <span className="">Ordered at:</span>{" "}
+                    {moment(order.created_at).format("MMM DD, YYYY [at] h:mm A")}
+                  </div>
+                )} */}
+              </div>
+            )}
 
           </div>
         ))}

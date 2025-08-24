@@ -16,6 +16,7 @@ export type LineItem = {
 
 export type Order = {
   id: number;
+  note?: string;
   name: string;
   created_at: string; // e.g. 2025-08-18T00:34:54-07:00
   customer?: {
@@ -41,6 +42,7 @@ export async function fetchOrders(fromISO: string, toISO: string, excludeTag: st
   // console.log("rawOrders", rawOrders);
   const orders: Order[] = rawOrders.map((o: any) => ({
     id: o.id,
+    note: o.note,
     name: o.name,
     created_at: o.created_at || o.createdAt,
     customer: o.customer

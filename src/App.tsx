@@ -28,23 +28,17 @@ function App() {
               <h1 className="text-xl font-semibold text-gray-900">Gary's Order Tracker</h1>
               
               {/* Date Selector */}
-              <div className="flex items-center space-x-4">
+              {/* <div className="flex items-center space-x-4">
                 <input
                   type="date"
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
                   className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-              </div>
+              </div> */}
 
               {/* Navigation */}
               <nav className="flex space-x-4">
-                <Link
-                  to="/"
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-                >
-                  Batch View
-                </Link>
                 <Link
                   to="/orders"
                   className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
@@ -65,7 +59,8 @@ function App() {
         {/* Main Content */}
         <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           <Routes>
-            <Route path="/" element={<BatchView />} />
+            <Route path="/" element={<OrdersPage />} />
+            <Route path="/batch-view" element={<BatchView />} />
             <Route path="/orders" element={<OrdersPage />} />
             <Route path="/products" element={<ProductPage />} />
           </Routes>

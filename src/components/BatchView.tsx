@@ -1,47 +1,41 @@
-import { useOrdersStore, GroupUnit } from '../stores/ordersStore';
+import { useOrdersStore, GroupUnit, GroupProgressItem } from '../stores/ordersStore';
 import { httpsCallable } from 'firebase/functions';
 import { functions } from '../firebase';
-import { CheckCircle, Circle } from 'lucide-react';
 import { useEffect } from 'react';
+import { useSettingsStore } from '../stores/settingsStore';
 
 const BatchView = () => {
-  const { groups, loading, selectedDate, subscribeToGroups, setSelectedDate, toggleGroupUnitOptimistically } = useOrdersStore();
+  const { groups, loading, toggleGroupItemOptimistically } = useOrdersStore();
 
   const toggleUnit = httpsCallable(functions, 'toggleGroupUnit');
+  const { dueDate } = useSettingsStore();
 
   // Debug logging
   useEffect(() => {
-    console.log('BatchView - selectedDate:', selectedDate);
+    console.log('BatchView - dueDate:', dueDate);
     console.log('BatchView - groups:', groups);
     console.log('BatchView - loading:', loading);
-  }, [selectedDate, groups, loading]);
+  }, [dueDate, groups, loading]);
 
-  // Subscribe to groups when component mounts or date changes
-  useEffect(() => {
-    if (selectedDate) {
-      console.log('Subscribing to groups for date:', selectedDate);
-      subscribeToGroups(selectedDate);
-    }
-  }, [selectedDate, subscribeToGroups]);
-
-  // Temporary test function
-  const testDate = () => {
-    console.log('Testing with date: 2025-08-20');
-    setSelectedDate('2025-08-20');
-  };
-
-  const handleToggleUnit = async (group: GroupUnit, unitIndex: number) => {
+  const handleToggleUnit = async (group: GroupUnit, progressItem: GroupProgressItem) => {
     try {
-      console.log('Toggling unit:', { day: selectedDate, groupKey: group.key, unitIndex });
+      console.log('Toggling unit:', { 
+        day: dueDate, 
+        groupKey: group.key, 
+        orderId: progressItem.orderId,
+        lineItemId: progressItem.lineItemId,
+        unitIndex: progressItem.unitIndex
+      });
 
       // Optimistic UI update - update immediately for better UX
-      toggleGroupUnitOptimistically(group.key, unitIndex);
+      toggleGroupItemOptimistically(group.key, progressItem.orderId, progressItem.lineItemId);
 
-      // Send request to Firebase
+      // Send request to Firebase using the new structure
       const result = await toggleUnit({
-        day: selectedDate,
+        day: dueDate,
         groupKey: group.key,
-        unitIndex
+        orderId: progressItem.orderId,
+        lineItemId: progressItem.lineItemId
       });
 
       console.log('Toggle result:', result);
@@ -67,7 +61,7 @@ const BatchView = () => {
       <!DOCTYPE html>
       <html>
       <head>
-        <title>All Production Cards - ${selectedDate}</title>
+        <title>All Production Cards - ${dueDate}</title>
         <style>
           @media print {
             @page {
@@ -265,7 +259,7 @@ const BatchView = () => {
           <div class="card">
             <!-- Header Row -->
             <div class="header-row">
-              <div class="date">${selectedDate}</div>
+              <div class="date">${dueDate}</div>
               <div class="total-section">
                 <div class="total-text">Total: ${group.need}</div>
               </div>
@@ -541,7 +535,7 @@ const BatchView = () => {
         <div class="card">
           <!-- Header Row -->
           <div class="header-row">
-            <div class="date">${selectedDate}</div>
+            <div class="date">${dueDate}</div>
             <div class="total-section">
               <div class="total-text">Total: ${group.need}</div>
             </div>
@@ -614,7 +608,7 @@ const BatchView = () => {
     return (
       <div className="flex justify-center items-center h-64">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-        <div className="ml-4 text-gray-600">Loading groups for {selectedDate}...</div>
+        <div className="ml-4 text-gray-600">Loading groups for {dueDate}...</div>
       </div>
     );
   }
@@ -622,32 +616,63 @@ const BatchView = () => {
   if (groups.length === 0) {
     return (
       <div className="text-center py-12">
-        <h3 className="text-lg font-medium text-gray-900 mb-2">No groups found</h3>
-        <p className="text-gray-500">
-          No production groups have been created for date: {selectedDate}
-        </p>
-        <div className="mt-4 text-sm text-gray-400">
-          <p>Debug info:</p>
-          <p>Selected date: {selectedDate}</p>
-          <p>Groups count: {groups.length}</p>
-          <p>Loading state: {loading.toString()}</p>
-        </div>
-        <div className="mt-4">
+        {/* Back to Order Page Button */}
+        <div className="flex items-center">
           <button
-            onClick={testDate}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            onClick={() => window.history.back()}
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors mb-4"
           >
-            Test with 2025-08-20
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            <span className="text-sm font-medium">Back to Order Page</span>
           </button>
         </div>
+        <h3 className="text-lg font-medium text-gray-900 mb-2">No Orders found</h3>
+        <p className="text-gray-500">
+          No batch sheet have been created for date: {dueDate}
+        </p>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
+      {/* Back to Order Page Button */}
+      <div className="flex items-center">
+        <button
+          onClick={() => window.history.back()}
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors mb-4"
+        >
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          <span className="text-sm font-medium">Back to Order Page</span>
+        </button>
+      </div>
+
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gray-900">Batch Production for {selectedDate}</h2>
+        <h2 className="text-2xl font-bold text-gray-900">Batch Production for {dueDate}</h2>
         <div className="flex items-center gap-4">
           <div className="text-lg font-bold">
             {groups.length} groups • {groups.reduce((sum, g) => sum + g.need, 0)} total units
@@ -668,7 +693,7 @@ const BatchView = () => {
             <div key={group.key} className="bg-white rounded-lg shadow-sm border p-6">
               {/* Date and Total */}
               <div className=" text-center flex justify-between flex-row">
-                <div>{selectedDate}</div>
+                <div>{dueDate}</div>
                 <div className="flex flex-row gap-2">
                   <div className="font-medium">
                     Total: {group.need}
@@ -730,34 +755,42 @@ const BatchView = () => {
 
               {/* Unit Buttons */}
               <div className="grid grid-cols-5 gap-2 mt-4">
-                {Array.from({ length: group.need }, (_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleToggleUnit(group, index)}
-                    className={`
+                {group.progressItems?.map((item, index) => {
+                  return (
+                    <div key={index} className='flex flex-col items-center justify-center'>
+                                             <button
+                         key={index}
+                         onClick={() => !item.isVoided && handleToggleUnit(group, item)}
+                         disabled={item.isVoided}
+                        className={`
                      w-10 h-10 rounded-lg border-2 transition-all duration-200 flex items-center justify-center relative
-                     ${group.progress[index]
-                        ? 'bg-green-100 border-green-500 text-green-700 hover:bg-green-200'
-                        : 'bg-gray-100 border-gray-300 text-gray-600 hover:bg-gray-200'
-                      }
+                     ${item.completed === 1 && !item.isVoided
+                            ? 'bg-green-100 border-green-500 text-green-700 hover:bg-green-200'
+                            : item.isVoided
+                            ? 'bg-red-100 border-red-300 text-red-500 opacity-50 cursor-not-allowed'
+                            : 'bg-gray-100 border-gray-300 text-gray-600 hover:bg-gray-200'
+                          }
                    `}
-                  >
-                    {/* Ref Number */}
-                    <span className="text-2xl">
-                      {index + 1}
-                    </span>
+                      >
+                        {/* Ref Number */}
+                        <span className="text-2xl">
+                          {index + 1}
+                        </span>
 
-                    {/* X Overlay when checked */}
-                    {group.progress[index] && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span
-                          className="block w-9 h-[2px] bg-red-600 rounded-full"
-                          style={{ transform: "rotate(-45deg)" }}
-                        ></span>
-                      </div>
-                    )}
-                  </button>
-                ))}
+                        {/* X Overlay when checked */}
+                        {item.completed === 1 && !item.isVoided && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span
+                              className="block w-9 h-[2px] bg-red-600 rounded-full"
+                              style={{ transform: "rotate(-45deg)" }}
+                            ></span>
+                          </div>
+                        )}
+                      </button>
+                      <div className='text-[9px] text-center'>{item.orderNumber + (item.isVoided ? " Voided" : "")}</div>
+                    </div>
+                  )
+                })}
               </div>
 
               {/* Card Index */}

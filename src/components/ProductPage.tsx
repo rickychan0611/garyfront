@@ -5,7 +5,6 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
   flexRender,
-  createColumnHelper,
   SortingState,
   ColumnDef,
 } from '@tanstack/react-table';
@@ -14,8 +13,7 @@ import {
   useProductStore, 
   groupProductsByCategory, 
   isDataStale,
-  type Product,
-  type ProductCategory 
+  type Product, 
 } from '../stores/productStore';
 
 const API_BASE = import.meta.env.VITE_API_BASE;
