@@ -1,9 +1,10 @@
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useState } from "react";
 import moment from "moment-timezone";
 import { useOrdersStore } from '../stores/ordersStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { Order } from "../stores/ordersStore";
 import { useNavigate } from "react-router-dom";
+import PickupListPage from './PickupListPage';
 
 
 function toWindowISO(dateInput: Date) {
@@ -45,6 +46,9 @@ export default function OrdersPage() {
   // Use Zustand stores
   const { orders, loading, loadOrders, subscribeToOrders, subscribeToGroups } = useOrdersStore();
   const { date, dueDate, setDueDate } = useSettingsStore();
+  
+  // State for view switching
+  const [currentView, setCurrentView] = useState<'orders' | 'pickup'>('orders');
 
   const printedTag = useMemo(() => `Printed-${date}`, [date]);
 
@@ -75,11 +79,14 @@ export default function OrdersPage() {
 
   // Shared function to generate order card HTML
   const generateOrderCardHTML = (order: Order, showIndex = false, orderIndex = 0, totalOrders = 0) => {
+    const isVoided = order.financial_status === "VOIDED";
     return `
-      <div class="card">
+      <div class="card ${isVoided ? 'voided' : ''}">
+        ${isVoided ? '<div class="voided-overlay">VOIDED</div>' : ''}
+        
         <!-- Header Row -->
         <div class="header-row">
-          <div class="order-number">Order #${order.number || 'N/A'}</div>
+          <div class="order-number">Order ${order.number || 'N/A'}</div>
           <div class="ref-number">#${order.ref_number || 'N/A'}</div>
         </div>
 
@@ -88,10 +95,6 @@ export default function OrdersPage() {
         
         <!-- Order Info -->
         <div class="info-section">
-          <div class="info-item">
-            <span class="info-label">Id:</span>
-            <span class="info-value">${order.number || 'N/A'}</span>
-          </div>
           <div class="info-item">
             <span class="info-label">Phone:</span>
             <span class="info-value">${getCustomerPhone(order) || "—"}</span>
@@ -180,13 +183,33 @@ export default function OrdersPage() {
       background: white;
     }
     
-    .card {
-      background: white;
-      padding: 16px;
-      max-width: 70mm;
-      margin: 0 auto;
-      ${isMultiCard ? 'page-break-inside: avoid;' : ''}
-    }
+         .card {
+       background: white;
+       padding: 16px;
+       max-width: 70mm;
+       margin: 0 auto;
+       ${isMultiCard ? 'page-break-inside: avoid;' : ''}
+       position: relative;
+     }
+     
+     .card.voided {
+       opacity: 0.7;
+     }
+     
+     .voided-overlay {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%) rotate(-45deg);
+       font-size: 48px;
+       font-weight: bold;
+       color: #dc2626;
+       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+       z-index: 10;
+       pointer-events: none;
+       white-space: nowrap;
+       letter-spacing: 2px;
+     }
     
     .header-row {
       display: flex;
@@ -198,7 +221,7 @@ export default function OrdersPage() {
     
     .order-number {
       color: #374151;
-      font-size: 14px;
+      font-size: 17px;
       font-weight: 600;
     }
     
@@ -427,7 +450,7 @@ export default function OrdersPage() {
       <body>
         <!-- Print Controls -->
         <div class="no-print print-controls">
-          <button class="print-btn" onclick="window.print()">🖨️ Print All Cards</button>
+          <button class="print-btn" onclick="window.print()">🖨️ Print All Tickets</button>
           <button class="print-btn close-btn" onclick="window.close()">❌ Close</button>
         </div>
         
@@ -442,7 +465,7 @@ export default function OrdersPage() {
     printWindow.document.write(printContent);
     printWindow.document.close();
   };
-  
+
   const navigate = useNavigate();
 
   return (
@@ -469,166 +492,191 @@ export default function OrdersPage() {
             {loading ? "Loading…" : "Refresh Orders from Shopify"}
           </button>
           <button
+            onClick={() => setCurrentView(currentView === 'orders' ? 'pickup' : 'orders')}
+            className="px-4 py-2 rounded bg-purple-600 text-white hover:bg-purple-700"
+          >
+            {currentView === 'orders' ? '📋 View Pick Up Table' : '📋 View Orders Tickets'}
+          </button>
+          <button
             onClick={handlePrintAllCards}
             disabled={!orders.length}
             className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 disabled:opacity-50"
           >
-            🖨️ Print All Cards
+            🖨️ Print All Tickets
           </button>
-          <button
-            onClick={() => navigate('/batch-view')}
-            className="px-4 py-2 rounded bg-blue-500 text-white"
-          >
-             👷 Batch Sheets
-          </button>
+                     <button
+             onClick={() => navigate('/batch-view')}
+             className="px-4 py-2 rounded bg-blue-500 text-white"
+           >
+             👷 Production Batch Sheets
+           </button>
+           <button
+             onClick={() => navigate('/message-tickets')}
+             className="px-4 py-2 rounded bg-pink-500 text-white hover:bg-pink-600"
+           >
+             💌 Message Tickets
+           </button>
         </div>
         <span className="mt-4 text-[20px] font-bold">
           Total: {orders.length}
         </span>
       </header>
 
-      {!orders.length && !loading && (
-        <div className="text-center text-gray-500 bg-white rounded-lg shadow p-6">
-          No orders found.
-        </div>
-      )}
+      {/* Conditional rendering based on current view */}
+      {currentView === 'pickup' ? (
+        <PickupListPage />
+      ) : (
+        <>
+          {!orders.length && !loading && (
+            <div className="text-center text-gray-500 bg-white rounded-lg shadow p-6">
+              No orders found.
+            </div>
+          )}
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {orders.map((order) => (
-          <div
-            key={order.id}
-            className="bg-white rounded-xl shadow-md p-6 flex flex-col hover:shadow-lg transition-shadow relative"
-          >
-            <div className="flex justify-between">
-              <div className="mb-1 text-lg font-semibold text-gray-800">
-                {getCustomerName(order) || "—"}
-              </div>
-              <div className="flex items-center gap-2">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {orders.map((order) => {
+          // if (order.financial_status === "VOIDED") return null;
+          return (
+            <div
+              key={order.id}
+              className="bg-white rounded-xl shadow-md p-6 flex flex-col hover:shadow-lg transition-shadow relative"
+            >
+              <div className="flex justify-between">
                 <div className="mb-1 text-lg font-semibold text-gray-800">
-                  #{order.ref_number}
+                  {getCustomerName(order) || "—"}
                 </div>
-                <button
-                  onClick={() => handlePrintCard(order)}
-                  className="text-blue-600 hover:text-blue-800 transition-colors"
-                  title="Print this order"
-                >
-                  🖨️
-                </button>
+                <div className="flex items-center gap-2">
+                  <div className="mb-1 text-lg font-semibold text-blue-500">
+                    #{order.ref_number}
+                  </div>
+                  <button
+                    onClick={() => handlePrintCard(order)}
+                    className="text-blue-600 hover:text-blue-800 transition-colors"
+                    title="Print this order"
+                  >
+                    🖨️
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <div className="text-sm text-gray-700">
-              <div className="flex justify-between">
-                <span className="font-medium">Id</span>
-                <span>{order.number}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-medium">Phone</span>
-                <span>{getCustomerPhone(order) || "—"}</span>
-              </div>
-              {order.tags && order.tags.length > 0 && (
-                <div className="flex justify-between">
-                  <span className="font-medium">Pickup Time</span>
-                  <span className="text-sm text-green-600 font-medium max-w-xs text-right">
-                    {order.tags[0]} | {order.tags[1]}
+              <div className="text-sm text-gray-700">
+                <div className="flex justify-between ">
+                  <span className="font-medium">Id</span>
+                  <span
+                    className={`font-bold text-[18px] ${order.financial_status === "VOIDED" ? "line-through" : ""}`}
+                  >
+                    {order.number}
                   </span>
                 </div>
-              )}
-
-                                           {/* Display financial status */}
-              {order.financial_status && (
                 <div className="flex justify-between">
-                  <span className="font-medium">Payment Status</span>
-                  <span className={`text-sm font-medium max-w-xs text-right ${order.financial_status === 'PAID' ? 'text-green-600' :
-                    order.financial_status === 'PENDING' ? 'text-yellow-600' : 'text-red-600'
-                    }`}>
-                    {order.financial_status}
-                  </span>
+                  <span className="font-medium">Phone</span>
+                  <span>{getCustomerPhone(order) || "—"}</span>
                 </div>
-              )}
-
-              {/* Display total price */}
-              {order.total_price && (
-                <div className="flex justify-between">
-                  <span className="font-medium">Total Price</span>
-                  <span className="text-sm text-blue-600 font-medium max-w-xs text-right">
-                    ${Number(order.total_price.replace(" CAD", '')).toFixed(2)}
-                  </span>
-                </div>
-              )}
-            </div>
-
-            <div className="border-t border-gray-200 mt-3 pt-2">
-              <ul className="space-y-2">
-                {order.items
-                  .filter(lineItem => !lineItem.productTitle.toLowerCase().includes("tip"))
-                  .map(lineItem => (
-                    <li
-                      key={lineItem.id}
-                      className="flex flex-col border-b pb-2 last:border-none"
-                    >
-                      <div className="flex justify-between items-center">
-                        <span className="font-bold">{lineItem.productTitle.replace(/\s*\(.*?\)\s*/g, "").trim()}</span>
-                        <span className="text-[18px] font-bold mt-1">
-                          ×{lineItem.quantity}
-                        </span>
-                      </div>
-                      <div className="flex gap-2 mt-1 text-xs text-gray-600 flex-wrap flex-col">
-
-                        {lineItem.variantSize && (
-                          <span className="text-black text-[16px] font-bold text-red-500">
-                            Size: {lineItem.variantSize.replace(/\s*\(.*?\)\s*/g, "").trim()}
-                          </span>
-                        )}
-
-                        {lineItem.selectedOptions && lineItem.selectedOptions.length > 0 && (
-                          <span className="text-black text-[14px]">
-                            {lineItem.selectedOptions.map((opt) => {
-                              if (opt.name.includes("Add Chocolate Plaque Message")) return null;
-                              if (opt.name.includes("Size")) return null;
-                              if (opt.name.includes("Title")) return null;
-                              return (
-                                <div>
-                                  {opt.name.replace(/\s*\(.*?\)\s*/g, "").trim()}: {opt.value.replace(/\s*\(.*?\)\s*/g, "").trim()}
-                                </div>
-                              )
-                            })}
-                          </span>
-                        )}
-
-                        {lineItem.message && (
-                          <span className="p-2 px-4 rounded bg-yellow-100 w-full text-[14px] text-black">
-                            Message: {lineItem.message}
-                          </span>
-                        )}
-                      </div>
-                    </li>
-                  ))}
-              </ul>
-            </div>
-
-            {/* Note and Created Date Section */}
-            {(order.note || order.created_at) && (
-              <div className="pt-2">
-                {order.note && (
-                  <div className="">
-                    <div className="text-xs text-gray-500">
-                      Note: {order.note}
-                    </div>
+                {order.tags && order.tags.length > 0 && (
+                  <div className="flex justify-between">
+                    <span className="font-medium">Pickup Time</span>
+                    <span className="text-sm text-green-600 font-medium max-w-xs text-right">
+                      {order.tags[0]} | {order.tags[1]}
+                    </span>
                   </div>
                 )}
-                {/* {order.created_at && (
+
+                {/* Display financial status */}
+                {order.financial_status && (
+                  <div className="flex justify-between">
+                    <span className="font-medium">Payment Status</span>
+                    <span className={`text-sm font-medium max-w-xs text-right ${order.financial_status === 'PAID' ? 'text-green-600' :
+                      order.financial_status === 'PENDING' ? 'text-yellow-600' : 'text-red-600'
+                      }`}>
+                      {order.financial_status}
+                    </span>
+                  </div>
+                )}
+
+                {/* Display total price */}
+                {order.total_price && (
+                  <div className="flex justify-between">
+                    <span className="font-medium">Total Price</span>
+                    <span className="text-sm text-blue-600 font-medium max-w-xs text-right">
+                      ${Number(order.total_price.replace(" CAD", '')).toFixed(2)}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              <div className="border-t border-gray-200 mt-3 pt-2">
+                <ul className="space-y-2">
+                  {order.items
+                    .filter(lineItem => !lineItem.productTitle.toLowerCase().includes("tip"))
+                    .map(lineItem => (
+                      <li
+                        key={lineItem.id}
+                        className={`flex flex-col border-b pb-2 last:border-none ${order.financial_status === "VOIDED" ? "line-through" : ""}`}
+                      >
+                        <div className="flex justify-between items-center">
+                          <span className="font-bold">{lineItem.productTitle.replace(/\s*\(.*?\)\s*/g, "").trim()}</span>
+                          <span className="text-[18px] font-bold mt-1">
+                            ×{lineItem.quantity}
+                          </span>
+                        </div>
+                        <div className="flex gap-2 mt-1 text-xs text-gray-600 flex-wrap flex-col">
+
+                          {lineItem.variantSize && (
+                            <span className="text-black text-[16px] font-bold text-red-500">
+                              Size: {lineItem.variantSize.replace(/\s*\(.*?\)\s*/g, "").trim()}
+                            </span>
+                          )}
+
+                          {lineItem.selectedOptions && lineItem.selectedOptions.length > 0 && (
+                            <span className="text-black text-[14px]">
+                              {lineItem.selectedOptions.map((opt) => {
+                                if (opt.name.includes("Add Chocolate Plaque Message")) return null;
+                                if (opt.name.includes("Size")) return null;
+                                if (opt.name.includes("Title")) return null;
+                                return (
+                                  <div>
+                                    {opt.name.replace(/\s*\(.*?\)\s*/g, "").trim()}: {opt.value.replace(/\s*\(.*?\)\s*/g, "").trim()}
+                                  </div>
+                                )
+                              })}
+                            </span>
+                          )}
+
+                          {lineItem.message && (
+                            <span className="p-2 px-4 rounded bg-yellow-100 w-full text-[14px] text-black">
+                              Message: {lineItem.message}
+                            </span>
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+
+              {/* Note and Created Date Section */}
+              {(order.note || order.created_at) && (
+                <div className="pt-2">
+                  {order.note && (
+                    <div className="">
+                      <div className="text-xs text-gray-500">
+                        Note: {order.note}
+                      </div>
+                    </div>
+                  )}
+                  {/* {order.created_at && (
                   <div className="text-xs text-gray-500">
                     <span className="">Ordered at:</span>{" "}
                     {moment(order.created_at).format("MMM DD, YYYY [at] h:mm A")}
                   </div>
                 )} */}
-              </div>
-            )}
+                </div>
+              )}
 
+            </div>
+          )})}
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </div>
   );
 }

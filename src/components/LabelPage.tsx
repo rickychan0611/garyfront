@@ -33,14 +33,24 @@ const LabelPage = () => {
       <div className="grid grid-cols-1 gap-4 print:grid-cols-1">
         {orders.map((order) => (
           order.items.map((item, itemIndex) => (
-            <div
-              key={`${order.id}-${item.id}`}
-              className="bg-white border border-gray-300 rounded-lg p-4 print:border-0 print:p-2 print:break-inside-avoid"
-              style={{ width: '80mm', minHeight: '60mm' }}
-            >
+                         <div
+               key={`${order.id}-${item.id}`}
+               className={`bg-white border border-gray-300 rounded-lg p-4 print:border-0 print:p-2 print:break-inside-avoid relative ${
+                 order.financial_status === "VOIDED" ? "opacity-70" : ""
+               }`}
+               style={{ width: '80mm', minHeight: '60mm' }}
+             >
+               {order.financial_status === "VOIDED" && (
+                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                   <div className="text-4xl font-bold text-red-600 transform -rotate-45 select-none">
+                     VOIDED
+                   </div>
+                 </div>
+               )}
               {/* Order Info */}
               <div className="text-center mb-3">
                 <div className="text-lg font-bold text-gray-900">#{order.number}</div>
+                <div className="text-sm font-semibold text-blue-600">#{order.ref_number}</div>
                 <div className="text-sm text-gray-600">{order.customer.name}</div>
                 <div className="text-xs text-gray-500">{order.customer.phone}</div>
               </div>

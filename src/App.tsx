@@ -5,6 +5,7 @@ import './print.css';
 import BatchView from './components/BatchView';
 import OrdersPage from './components/OrdersPage';
 import ProductPage from './components/ProductPage';
+import MessageTicketsPage from './components/MessageTicketsPage';
 
 function App() {
   const { selectedDate, setSelectedDate, subscribeToGroups, subscribeToOrders, unsubscribe } = useOrdersStore();
@@ -50,6 +51,12 @@ function App() {
                   className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
                 >
                   Products
+                </Link>
+                <Link
+                  to="/message-tickets"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                >
+                  Message Tickets
                 </Link>             
               </nav>
             </div>
@@ -63,6 +70,7 @@ function App() {
             <Route path="/batch-view" element={<BatchView />} />
             <Route path="/orders" element={<OrdersPage />} />
             <Route path="/products" element={<ProductPage />} />
+            <Route path="/message-tickets" element={<MessageTicketsPage />} />
           </Routes>
         </main>
       </div>

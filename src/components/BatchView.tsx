@@ -19,9 +19,9 @@ const BatchView = () => {
 
   const handleToggleUnit = async (group: GroupUnit, progressItem: GroupProgressItem) => {
     try {
-      console.log('Toggling unit:', { 
-        day: dueDate, 
-        groupKey: group.key, 
+      console.log('Toggling unit:', {
+        day: dueDate,
+        groupKey: group.key,
         orderId: progressItem.orderId,
         lineItemId: progressItem.lineItemId,
         unitIndex: progressItem.unitIndex
@@ -249,7 +249,7 @@ const BatchView = () => {
       <body>
       <!-- Print Controls -->
         <div class="no-print print-controls">
-          <button class="print-btn" onclick="window.print()">🖨️ Print All Cards</button>
+          <button class="print-btn" onclick="window.print()">🖨️ Print All Tickets</button>
           <button class="print-btn close-btn" onclick="window.close()">❌ Close</button>
         </div>
         
@@ -755,20 +755,20 @@ const BatchView = () => {
 
               {/* Unit Buttons */}
               <div className="grid grid-cols-5 gap-2 mt-4">
-                {group.progressItems?.map((item, index) => {
+                {group.progressItems?.filter(item => !item.isVoided).map((item, index) => {
                   return (
                     <div key={index} className='flex flex-col items-center justify-center'>
-                                             <button
-                         key={index}
-                         onClick={() => !item.isVoided && handleToggleUnit(group, item)}
-                         disabled={item.isVoided}
+                      <button
+                        key={index}
+                        onClick={() => !item.isVoided && handleToggleUnit(group, item)}
+                        disabled={item.isVoided}
                         className={`
                      w-10 h-10 rounded-lg border-2 transition-all duration-200 flex items-center justify-center relative
                      ${item.completed === 1 && !item.isVoided
                             ? 'bg-green-100 border-green-500 text-green-700 hover:bg-green-200'
                             : item.isVoided
-                            ? 'bg-red-100 border-red-300 text-red-500 opacity-50 cursor-not-allowed'
-                            : 'bg-gray-100 border-gray-300 text-gray-600 hover:bg-gray-200'
+                              ? 'bg-red-100 border-red-300 text-red-500 opacity-50 cursor-not-allowed'
+                              : 'bg-gray-100 border-gray-300 text-gray-600 hover:bg-gray-200'
                           }
                    `}
                       >
