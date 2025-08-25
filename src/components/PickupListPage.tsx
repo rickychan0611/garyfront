@@ -203,7 +203,7 @@ const PickupListPage = () => {
           .header {
             text-align: center;
             margin-bottom: 30px;
-            border-bottom: 2px solid #000;
+            border-bottom: 2px solid black;
             padding-bottom: 10px;
           }
           
@@ -211,36 +211,41 @@ const PickupListPage = () => {
             margin: 0;
             font-size: 24px;
             font-weight: bold;
+            color: black;
           }
           
           .header h2 {
             margin: 5px 0 0 0;
             font-size: 18px;
             font-weight: normal;
-            color: #666;
+            color: black;
           }
           
           table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            border: 2px solid black;
           }
           
           th, td {
-            border: 1px solid #ddd;
+            border: 1px solid black;
             padding: 8px;
             text-align: left;
             vertical-align: top;
           }
           
           th {
-            background-color: #f5f5f5;
+            background-color: white;
+            border: 2px solid black;
             font-weight: bold;
             font-size: 14px;
+            color: black;
           }
           
           td {
             font-size: 12px;
+            color: black;
           }
           
           .row-number {
@@ -282,51 +287,57 @@ const PickupListPage = () => {
           
           .status-badge {
             padding: 2px 6px;
+            border: 1px solid black;
             border-radius: 4px;
             font-size: 10px;
             font-weight: bold;
+            background: white;
+            color: black;
           }
           
           .status-voided {
-            background-color: #fee2e2;
-            color: #991b1b;
+            background: white;
+            color: black;
+            border: 2px solid black;
           }
           
           .status-pending {
-            background-color: #fef3c7;
-            color: #92400e;
+            background: white;
+            color: black;
+            border: 1px solid black;
           }
           
           .status-paid {
-            background-color: #d1fae5;
-            color: #065f46;
+            background: white;
+            color: black;
+            border: 1px solid black;
           }
           
-                     .status-refunded {
-             background-color: #fed7aa;
-             color: #9a3412;
-           }
+          .status-refunded {
+            background: white;
+            color: black;
+            border: 1px solid black;
+          }
            
-           .voided-row {
-             opacity: 0.7;
-             position: relative;
-           }
+          .voided-row {
+            opacity: 0.7;
+            position: relative;
+          }
            
-           .voided-row::after {
-             content: "VOIDED";
-             position: absolute;
-             top: 50%;
-             left: 50%;
-             transform: translate(-50%, -50%) rotate(-45deg);
-             font-size: 36px;
-             font-weight: bold;
-             color: #dc2626;
-             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-             z-index: 10;
-             pointer-events: none;
-             white-space: nowrap;
-             letter-spacing: 2px;
-           }
+          .voided-row::after {
+            content: "VOIDED";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 36px;
+            font-weight: bold;
+            color: black;
+            z-index: 10;
+            pointer-events: none;
+            white-space: nowrap;
+            letter-spacing: 2px;
+          }
           
           .print-controls {
             text-align: center;
@@ -334,9 +345,9 @@ const PickupListPage = () => {
           }
           
           .print-btn {
-            background: #3b82f6;
+            background: black;
             color: white;
-            border: none;
+            border: 1px solid black;
             padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
@@ -346,7 +357,9 @@ const PickupListPage = () => {
           }
           
           .close-btn {
-            background: #6b7280;
+            background: white;
+            color: black;
+            border: 1px solid black;
           }
         </style>
       </head>

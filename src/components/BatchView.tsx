@@ -83,6 +83,7 @@ const BatchView = () => {
             margin: 0;
             padding: 0;
             background: white;
+            color: black;
           }
           
           .card {
@@ -91,6 +92,7 @@ const BatchView = () => {
             max-width: 70mm;
             margin: 0 auto;
             page-break-inside: avoid;
+            border: 1px solid black;
           }
           
           .header-row {
@@ -99,10 +101,12 @@ const BatchView = () => {
             align-items: center;
             margin-bottom: 12px;
             text-align: center;
+            border-bottom: 1px solid black;
+            padding-bottom: 6px;
           }
           
           .date {
-            color: #374151;
+            color: black;
             font-size: 12px;
           }
           
@@ -115,29 +119,33 @@ const BatchView = () => {
           
           .total-text {
             font-weight: 500;
-            color: #374151;
+            color: black;
             font-size: 16px;
           }
           
           .product-title {
             font-size: 16px;
             font-weight: 600;
-            color: #111827;
+            color: black;
             margin-bottom: 4px;
             line-height: 1.3;
           }
           
           .size-badge {
             display: inline-block;
-            background: #dbeafe;
+            background: white;
+            border: 1px solid black;
             padding: 2px 4px;
             border-radius: 4px;
             font-weight: 700;
             font-size: 14px;
+            color: black;
           }
           
           .options-section {
             margin: 12px 0;
+            border: 1px solid black;
+            padding: 6px;
           }
           
           .option-item {
@@ -147,17 +155,23 @@ const BatchView = () => {
             margin: 3px 0;
             padding: 2px 0;
             gap: 6px;
+            border-bottom: 1px dotted black;
+          }
+          
+          .option-item:last-child {
+            border-bottom: none;
           }
           
           .option-text {
             font-size: 11px;
-            color: #6b7280;
+            color: black;
             font-weight: 500;
             flex: 1;
           }
           
           .option-count {
             padding: 0px 4px;
+            border: 1px solid black;
             border-radius: 3px;
             font-size: 11px;
             font-weight: 500;
@@ -167,6 +181,8 @@ const BatchView = () => {
             display: flex;
             align-items: center;
             justify-content: center;
+            background: white;
+            color: black;
           }
           
           .unit-buttons {
@@ -180,14 +196,14 @@ const BatchView = () => {
             width: 32px;
             height: 32px;
             border-radius: 6px;
-            border: 2px solid #d1d5db;
+            border: 2px solid black;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 14px;
             font-weight: 600;
-            color: #6b7280;
-            background: #f9fafb;
+            color: black;
+            background: white;
             position: relative;
           }
           
@@ -218,7 +234,7 @@ const BatchView = () => {
           
           .index-text {
             font-size: 9px;
-            color: #9ca3af;
+            color: black;
             font-weight: 500;
           }
           
@@ -226,13 +242,13 @@ const BatchView = () => {
             text-align: center;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid #e5e7eb;
+            border-top: 1px solid black;
           }
           
           .print-btn {
-            background: #3b82f6;
+            background: black;
             color: white;
-            border: none;
+            border: 1px solid black;
             padding: 8px 16px;
             border-radius: 4px;
             cursor: pointer;
@@ -242,7 +258,9 @@ const BatchView = () => {
           }
           
           .close-btn {
-            background: #6b7280;
+            background: white;
+            color: black;
+            border: 1px solid black;
           }
         </style>
       </head>
@@ -354,6 +372,7 @@ const BatchView = () => {
             margin: 0;
             padding: 10px;
             background: white;
+            color: black;
           }
           
           .card {
@@ -361,111 +380,125 @@ const BatchView = () => {
             padding: 16px;
             max-width: 70mm;
             margin: 0 auto;
+            border: 1px solid black;
           }
           
-                     .header-row {
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-             margin-bottom: 12px;
-             text-align: center;
-           }
+          .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            text-align: center;
+            border-bottom: 1px solid black;
+            padding-bottom: 6px;
+          }
            
-           .date {
-             color: #374151;
-             font-size: 12px;
-           }
+          .date {
+            color: black;
+            font-size: 12px;
+          }
            
-           .total-section {
-             display: flex;
-             flex-direction: row;
-             gap: 6px;
-             align-items: center;
-           }
+          .total-section {
+            display: flex;
+            flex-direction: row;
+            gap: 6px;
+            align-items: center;
+          }
            
-           .total-text {
-             font-weight: 500;
-             color: #374151;
-             font-size: 16px;
-           }
+          .total-text {
+            font-weight: 500;
+            color: black;
+            font-size: 16px;
+          }
            
-           .print-icon {
-             font-size: 14px;
-             color: #3b82f6;
-           }
+          .print-icon {
+            font-size: 14px;
+            color: black;
+          }
            
-           .product-title {
-             font-size: 16px;
-             font-weight: 600;
-             color: #111827;
-             margin-bottom: 4px;
-             line-height: 1.3;
-           }
+          .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: black;
+            margin-bottom: 4px;
+            line-height: 1.3;
+          }
            
-           .size-badge {
-             display: inline-block;
-             background: #dbeafe;
-             padding: 2px 4px;
-             border-radius: 4px;
-             font-weight: 700;
-             font-size: 14px;
-           }
+          .size-badge {
+            display: inline-block;
+            background: white;
+            border: 1px solid black;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 14px;
+            color: black;
+          }
            
-           .options-section {
-             margin: 12px 0;
-           }
+          .options-section {
+            margin: 12px 0;
+            border: 1px solid black;
+            padding: 6px;
+          }
            
-           .option-item {
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-             margin: 3px 0;
-             padding: 2px 0;
-             gap: 6px;
-           }
+          .option-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3px 0;
+            padding: 2px 0;
+            gap: 6px;
+            border-bottom: 1px dotted black;
+          }
+          
+          .option-item:last-child {
+            border-bottom: none;
+          }
            
-           .option-text {
-             font-size: 11px;
-             color: #6b7280;
-             font-weight: 500;
-             flex: 1;
-           }
+          .option-text {
+            font-size: 11px;
+            color: black;
+            font-weight: 500;
+            flex: 1;
+          }
            
-           .option-count {
-             padding: 0px 4px;
-             border-radius: 3px;
-             font-size: 11px;
-             font-weight: 500;
-             min-width: 18px;
-             text-align: center;
-             height: 18px;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-           }
+          .option-count {
+            padding: 0px 4px;
+            border: 1px solid black;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 500;
+            min-width: 18px;
+            text-align: center;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: black;
+          }
            
-           .unit-buttons {
-             display: grid;
-             grid-template-columns: repeat(5, 1fr);
-             gap: 3px;
-             margin: 8px 0;
-           }
+          .unit-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3px;
+            margin: 8px 0;
+          }
            
-           .unit-button {
-             width: 32px;
-             height: 32px;
-             border-radius: 6px;
-             border: 2px solid #d1d5db;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             font-size: 14px;
-             font-weight: 600;
-             color: #6b7280;
-             background: #f9fafb;
-             position: relative;
-             transition: all 0.2s;
-           }
+          .unit-button {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: 2px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: black;
+            background: white;
+            position: relative;
+          }
           
           .unit-button.completed {
             background: white !important;
@@ -486,48 +519,49 @@ const BatchView = () => {
              z-index: 10;
            }
           
-           .card-index {
-             display: flex;
-             justify-content: flex-end;
-             margin-top: 8px;
-           }
+          .card-index {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 8px;
+          }
            
-           .index-text {
-             font-size: 9px;
-             color: #9ca3af;
-             font-weight: 500;
-           }
+          .index-text {
+            font-size: 9px;
+            color: black;
+            font-weight: 500;
+          }
            
-           .print-controls {
-             text-align: center;
-             margin-top: 16px;
-             padding-top: 16px;
-             border-top: 1px solid #e5e7eb;
-           }
+          .print-controls {
+            text-align: center;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid black;
+          }
            
-           .print-btn {
-             background: #3b82f6;
-             color: white;
-             border: none;
-             padding: 8px 16px;
-             border-radius: 4px;
-             cursor: pointer;
-             margin: 0 6px;
-             font-size: 12px;
-             font-weight: 500;
-             transition: background-color 0.2s;
-           }
+          .print-btn {
+            background: black;
+            color: white;
+            border: 1px solid black;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 6px;
+            font-size: 12px;
+            font-weight: 500;
+          }
           
           .print-btn:hover {
-            background: #2563eb;
+            background: black;
           }
           
           .close-btn {
-            background: #6b7280;
+            background: white;
+            color: black;
+            border: 1px solid black;
           }
           
           .close-btn:hover {
-            background: #4b5563;
+            background: white;
           }
         </style>
       </head>

@@ -76,7 +76,7 @@ const MessageTicketsPage = () => {
     `;
   };
 
-  // Print styles for message tickets - optimized for 80mm receipt paper
+  // Print styles for message tickets - optimized for 80mm receipt paper - BLACK ONLY
   const getPrintStyles = (isMultiTicket = false) => `
     @media print {
       @page {
@@ -104,8 +104,7 @@ const MessageTicketsPage = () => {
     
     .message-ticket {
       background: white;
-      padding: 16px;
-      max-width: 70mm;
+      width: 100%;
       margin: 0 auto;
       ${isMultiTicket ? 'page-break-inside: avoid;' : ''}
       position: relative;
@@ -116,7 +115,7 @@ const MessageTicketsPage = () => {
       top: 8px;
       right: 12px;
       font-size: 10px;
-      color: #666;
+      color: black;
       font-weight: 500;
     }
     
@@ -124,16 +123,18 @@ const MessageTicketsPage = () => {
       font-size: 18px;
       font-weight: bold;
       text-align: center;
-      color: #000;
+      color: black;
       margin-bottom: 12px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      border-bottom: 2px solid black;
+      padding-bottom: 6px;
     }
     
     .order-info {
-      margin-bottom: 12px;
       padding: 8px;
-      background: #f9f9f9;
+      background: white;
+      border-bottom: 1px solid black;
     }
     
     .order-header {
@@ -146,25 +147,25 @@ const MessageTicketsPage = () => {
     .order-number {
       font-size: 14px;
       font-weight: bold;
-      color: #000;
+      color: black;
     }
     
     .ref-number {
       font-size: 12px;
       font-weight: bold;
-      color: #000;
+      color: black;
     }
     
     .customer-name {
       font-size: 12px;
       font-weight: 600;
-      color: #000;
+      color: black;
       margin-bottom: 3px;
     }
     
     .customer-phone {
       font-size: 12px;
-      color: #333;
+      color: black;
       margin-bottom: 6px;
     }
     
@@ -176,52 +177,51 @@ const MessageTicketsPage = () => {
     
     .time-label {
       font-size: 10px;
-      color: #333;
+      color: black;
       font-weight: 500;
     }
     
     .time-value {
       font-size: 12px;
-      color: #000;
+      color: black;
       font-weight: 600;
     }
     
     .product-info {
-      margin-bottom: 12px;
       padding: 8px;
-      background: #f5f5f5;
+      background: white;
     }
     
     .product-title {
       font-size: 14px;
       font-weight: 600;
-      color: #000;
+      color: black;
       margin-bottom: 3px;
     }
     
     .product-size {
       font-size: 12px;
-      color: #333;
+      color: black;
       margin-bottom: 3px;
     }
     
     .product-quantity {
       font-size: 12px;
-      color: #333;
+      color: black;
       font-weight: 500;
     }
     
     .message-section {
       padding: 12px;
-      background: #fff;
-      border: 1px solid #000;
+      background: white;
+      border: 2px solid black;
       border-radius: 6px;
     }
     
     .message-content {
       font-size: 16px;
       font-weight: 600;
-      color: #000;
+      color: black;
       line-height: 1.3;
       text-align: center;
       min-height: 40px;
@@ -238,9 +238,9 @@ const MessageTicketsPage = () => {
     }
     
     .print-btn {
-      background: #333;
+      background: black;
       color: white;
-      border: none;
+      border: 1px solid black;
       padding: 10px 20px;
       border-radius: 4px;
       cursor: pointer;
@@ -251,15 +251,17 @@ const MessageTicketsPage = () => {
     }
     
     .print-btn:hover {
-      background: #555;
+      background: black;
     }
     
     .close-btn {
-      background: #666;
+      background: white;
+      color: black;
+      border: 1px solid black;
     }
     
     .close-btn:hover {
-      background: #888;
+      background: white;
     }
   `;
 

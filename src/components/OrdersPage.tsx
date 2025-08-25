@@ -158,7 +158,7 @@ export default function OrdersPage() {
     `;
   };
 
-  // Shared CSS styles for print functions
+  // Shared CSS styles for print functions - BLACK ONLY
   const getPrintStyles = (isMultiCard = false) => `
     @media print {
       @page {
@@ -171,45 +171,52 @@ export default function OrdersPage() {
       }
       .no-print { display: none; }
       ${isMultiCard ? `
-      .card { page-break-after: always; }
-      .card:last-child { page-break-after: auto; }
+      .card { 
+        page-break-after: always; 
+        break-after: page;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .card:last-child { 
+        page-break-after: auto; 
+        break-after: auto;
+      }
       ` : ''}
     }
     
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       margin: 0;
-      padding: ${isMultiCard ? '0' : '10px'};
+      // padding: ${isMultiCard ? '0' : '10px'};
       background: white;
+      color: black;
     }
     
-         .card {
-       background: white;
-       padding: 16px;
-       max-width: 70mm;
-       margin: 0 auto;
-       ${isMultiCard ? 'page-break-inside: avoid;' : ''}
-       position: relative;
-     }
+    .card {
+      background: white;
+      width: 100%;
+      margin: 0 auto;
+      ${isMultiCard ? 'page-break-inside: avoid;' : ''}
+      position: relative;
+    }
      
-     .card.voided {
-       opacity: 0.7;
-     }
+    .card.voided {
+      opacity: 1;
+    }
      
-     .voided-overlay {
-       position: absolute;
-       top: 50%;
-       left: 50%;
-       transform: translate(-50%, -50%) rotate(-45deg);
-       font-size: 48px;
-       font-weight: bold;
-       color: #dc2626;
-       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-       z-index: 10;
-       pointer-events: none;
-       white-space: nowrap;
-       letter-spacing: 2px;
-     }
+    .voided-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      font-size: 48px;
+      font-weight: bold;
+      color: black;
+      z-index: 10;
+      pointer-events: none;
+      white-space: nowrap;
+      letter-spacing: 2px;
+    }
     
     .header-row {
       display: flex;
@@ -217,31 +224,33 @@ export default function OrdersPage() {
       align-items: center;
       margin-bottom: 12px;
       text-align: center;
+      border-bottom: 1px solid black;
+      padding-bottom: 6px;
     }
     
     .order-number {
-      color: #374151;
+      color: black;
       font-size: 17px;
       font-weight: 600;
     }
     
     .ref-number {
-      color: #3b82f6;
+      color: black;
       font-size: 16px;
       font-weight: 700;
     }
     
     .customer-name {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
-      color: #111827;
-      margin-bottom: 8px;
+      color: black;
+      margin-bottom: 2px;
       line-height: 1.3;
       text-align: center;
     }
     
     .info-section {
-      margin: 12px 0;
+      margin: 6px 0;
     }
     
     .info-item {
@@ -249,79 +258,82 @@ export default function OrdersPage() {
       justify-content: space-between;
       align-items: center;
       margin: 4px 0;
-      padding: 2px 0;
-      gap: 6px;
+      gap: 2px;
     }
     
     .info-label {
       font-size: 12px;
-      color: #6b7280;
+      color: black;
       font-weight: 500;
       flex: 1;
     }
     
-         .info-value {
-       font-size: 12px;
-       color: #111827;
-       font-weight: 500;
-       text-align: right;
-       max-width: 50%;
-     }
+    .info-value {
+      font-size: 12px;
+      color: black;
+      font-weight: 500;
+      text-align: right;
+      max-width: 50%;
+    }
      
-     .pickup-time {
-       line-height: 1.2;
-       white-space: pre-line;
-     }
+    .pickup-time {
+      line-height: 1.2;
+      white-space: pre-line;
+    }
     
     .items-section {
-      margin: 12px 0;
-      border-top: 1px solid #e5e7eb;
-      padding-top: 8px;
+      margin: 6px 0;
     }
     
     .item-header {
       font-size: 14px;
       font-weight: 600;
-      color: #111827;
+      color: black;
       margin-bottom: 8px;
       text-align: center;
+      border-bottom: 1px solid black;
+      padding-bottom: 4px;
     }
     
     .item {
       margin: 8px 0;
       padding: 4px 0;
+      border-bottom: 1px dotted black;
+    }
+    
+    .item:last-child {
+      border-bottom: none;
     }
     
     .item-title {
       font-size: 13px;
       font-weight: 600;
-      color: #111827;
+      color: black;
       margin-bottom: 2px;
     }
     
     .item-details {
-      font-size: 11px;
-      color: #6b7280;
+      font-size: 12px;
+      color: black;
       margin: 2px 0;
     }
     
     .item-size {
       font-size: 12px;
       font-weight: 700;
-      color: #1d4ed8;
-      background: #dbeafe;
-      padding: 1px 4px;
-      border-radius: 3px;
+      color: black;
+      background: white;
       display: inline-block;
       margin: 2px 0;
     }
     
     .item-message {
-      background: #fef3c7;
+      background: white;
+      border: 1px solid black;
       padding: 4px 6px;
       border-radius: 4px;
-      font-size: 11px;
-      color: #92400e;
+      font-size: 12px;
+      color: black;
       margin: 4px 0;
     }
     
@@ -329,52 +341,53 @@ export default function OrdersPage() {
       text-align: center;
       margin-top: ${isMultiCard ? '20px' : '16px'};
       padding-top: ${isMultiCard ? '20px' : '16px'};
-      border-top: 1px solid #e5e7eb;
+      border-top: 1px solid black;
     }
     
     .print-btn {
-      background: #3b82f6;
+      background: black;
       color: white;
-      border: none;
+      border: 1px solid black;
       padding: 8px 16px;
       border-radius: 4px;
       cursor: pointer;
       margin: 0 6px;
       font-size: 12px;
       font-weight: 500;
-      ${!isMultiCard ? 'transition: background-color 0.2s;' : ''}
     }
     
     .print-btn:hover {
-      background: #2563eb;
+      background: black;
     }
     
     .close-btn {
-      background: #6b7280;
+      background: white;
+      color: black;
+      border: 1px solid black;
     }
     
     .close-btn:hover {
-      background: #4b5563;
+      background: white;
     }
     
     .note-section {
-      margin-top: 15px;
+      margin-top: 4px;
     }
     
     .note-label {
       font-size: 10px;
-      color: #6b7280;
+      color: black;
       font-weight: 600;
     }
     
     .note-content {
       font-size: 12px;
-      color: #374151;
+      color: black;
     }
     
     .created-date {
       font-size: 10px;
-      color: #6b7280;
+      color: black;
     }
     
     .date-label {
@@ -382,7 +395,7 @@ export default function OrdersPage() {
     }
     
     .date-value {
-      color: #374151;
+      color: black;
     }
     
     ${isMultiCard ? `
@@ -394,7 +407,7 @@ export default function OrdersPage() {
     
     .index-text {
       font-size: 9px;
-      color: #9ca3af;
+      color: black;
       font-weight: 500;
     }
     ` : ''}
