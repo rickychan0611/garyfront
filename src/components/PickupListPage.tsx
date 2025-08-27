@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useOrdersStore, Order } from '../stores/ordersStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import {
@@ -8,9 +8,52 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 
+const PrintConfirmModal = ({
+  isOpen,
+  onConfirm,
+  onCancel,
+  title = "Print Confirmation",
+  message = "You will print all pages and cannot stop the process."
+}: {
+  isOpen: boolean;
+  onConfirm: () => void;
+  onCancel: () => void;
+  title?: string;
+  message?: string;
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <h3 className="text-lg font-semibold text-gray-900 mb-3">{title}</h3>
+        <p className="text-gray-700 mb-6">{message}</p>
+        <div className="flex justify-end gap-3">
+          <button
+            onClick={onCancel}
+            className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={onConfirm}
+            className="px-4 py-2 bg-blue-600 text-blue-700 text-white rounded hover:bg-blue-700 transition-colors"
+          >
+            Print
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const PickupListPage = () => {
   const { orders, loading } = useOrdersStore();
   const { dueDate } = useSettingsStore();
+
+  // State for print confirmation modal
+  const [showPrintModal, setShowPrintModal] = useState(false);
+
   // No sorting state needed - table will be ordered by ref_number
 
   // Helper function to extract pickup time from tags
@@ -150,9 +193,15 @@ const PickupListPage = () => {
   });
 
   const handlePrint = () => {
+    setShowPrintModal(true);
+  };
+
+  const confirmPrint = () => {
+    setShowPrintModal(false);
+
     // Data is already sorted by ref_number, just use tableData directly
     const sortedForPrint = [...tableData];
-    
+
     // Helper function to format items for print (convert JSX back to string with line breaks)
     const formatItemsForPrint = (items: Order['items']): string => {
       return items.map(item => {
@@ -161,16 +210,16 @@ const PickupListPage = () => {
           itemText += ` (${item.variantSize})`;
         }
         itemText += ` ×${item.quantity}`;
-        
+
         // Add message if exists
         if (item.message) {
           itemText += ` - ${item.message}`;
         }
-        
+
         return `• ${itemText}`;
       }).join('<br/>');
     };
-    
+
     const printWindow = window.open('', '_blank', 'width=800,height=600');
     if (!printWindow) return;
 
@@ -178,6 +227,7 @@ const PickupListPage = () => {
       <!DOCTYPE html>
       <html>
       <head>
+        <meta charset="utf-8" />
         <title>Pickup Orders - ${dueDate}</title>
         <style>
           @media print {
@@ -191,7 +241,7 @@ const PickupListPage = () => {
             }
             .no-print { display: none; }
           }
-          
+
           body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
@@ -199,42 +249,42 @@ const PickupListPage = () => {
             background: white;
             color: black;
           }
-          
+
           .header {
             text-align: center;
             margin-bottom: 30px;
             border-bottom: 2px solid black;
             padding-bottom: 10px;
           }
-          
+
           .header h1 {
             margin: 0;
             font-size: 24px;
             font-weight: bold;
             color: black;
           }
-          
+
           .header h2 {
             margin: 5px 0 0 0;
             font-size: 18px;
             font-weight: normal;
             color: black;
           }
-          
+
           table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
             border: 2px solid black;
           }
-          
+
           th, td {
             border: 1px solid black;
             padding: 8px;
             text-align: left;
             vertical-align: top;
           }
-          
+
           th {
             background-color: white;
             border: 2px solid black;
@@ -242,49 +292,49 @@ const PickupListPage = () => {
             font-size: 14px;
             color: black;
           }
-          
+
           td {
             font-size: 12px;
             color: black;
           }
-          
+
           .row-number {
             font-weight: bold;
             width: 40px;
             text-align: center;
           }
-          
+
           .order-number {
             font-weight: bold;
             width: 80px;
           }
-          
+
           .customer-name {
             width: 120px;
           }
-          
+
           .phone-number {
             width: 100px;
           }
-          
+
           .pickup-time {
             width: 80px;
           }
-          
+
           .items {
             width: 300px;
             line-height: 1.6;
           }
-          
+
           .payment-status {
             width: 80px;
             text-align: center;
           }
-          
+
           .notes {
             width: 50px;
           }
-          
+
           .status-badge {
             padding: 2px 6px;
             border: 1px solid black;
@@ -294,56 +344,41 @@ const PickupListPage = () => {
             background: white;
             color: black;
           }
-          
+
           .status-voided {
             background: white;
             color: black;
             border: 2px solid black;
           }
-          
+
           .status-pending {
             background: white;
             color: black;
             border: 1px solid black;
           }
-          
+
           .status-paid {
             background: white;
             color: black;
             border: 1px solid black;
           }
-          
+
           .status-refunded {
             background: white;
             color: black;
             border: 1px solid black;
           }
-           
+
           .voided-row {
             opacity: 0.7;
             position: relative;
           }
-           
-          .voided-row::after {
-            content: "VOIDED";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 36px;
-            font-weight: bold;
-            color: black;
-            z-index: 10;
-            pointer-events: none;
-            white-space: nowrap;
-            letter-spacing: 2px;
-          }
-          
+
           .print-controls {
             text-align: center;
             margin-bottom: 20px;
           }
-          
+
           .print-btn {
             background: black;
             color: white;
@@ -355,7 +390,7 @@ const PickupListPage = () => {
             font-size: 14px;
             font-weight: 500;
           }
-          
+
           .close-btn {
             background: white;
             color: black;
@@ -366,15 +401,15 @@ const PickupListPage = () => {
       <body>
         <!-- Print Controls -->
         <div class="no-print print-controls">
-          <button class="print-btn" onclick="window.print()">🖨️ Print List</button>
+          <button class="print-btn" onclick="window.print()">🖨️ Print Table</button>
           <button class="print-btn close-btn" onclick="window.close()">❌ Close</button>
         </div>
-        
+
         <!-- Header -->
         <div class="header">
           <h2>Pickup Orders - ${dueDate}</h2>
         </div>
-        
+
         <!-- Table -->
         <table>
           <thead>
@@ -406,12 +441,25 @@ const PickupListPage = () => {
              `).join('')}
           </tbody>
         </table>
+
+        <script>
+          try {
+            window.onafterprint = function() { try { window.close(); } catch (e) {} };
+            window.onload = function() {
+              setTimeout(function(){ try { window.focus(); window.print(); } catch (e) {} }, 50);
+            };
+          } catch (e) { /* no-op */ }
+        </script>
       </body>
       </html>
     `;
 
     printWindow.document.write(printContent);
     printWindow.document.close();
+  };
+
+  const cancelPrint = () => {
+    setShowPrintModal(false);
   };
 
   if (loading) {
@@ -455,7 +503,7 @@ const PickupListPage = () => {
             onClick={handlePrint}
             className="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
           >
-            🖨️ Print List
+            🖨️ Print Table
           </button>
         </div>
       </div>
@@ -494,6 +542,15 @@ const PickupListPage = () => {
           </table>
         </div>
       </div>
+
+      {/* Print Confirmation Modal */}
+      <PrintConfirmModal
+        isOpen={showPrintModal}
+        onConfirm={confirmPrint}
+        onCancel={cancelPrint}
+        title="Print Pickup Table"
+        message={`You will print the pickup table and cannot stop the process.`}
+      />
     </div>
   );
 };

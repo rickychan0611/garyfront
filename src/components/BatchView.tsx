@@ -1,14 +1,18 @@
 import { useOrdersStore, GroupUnit, GroupProgressItem } from '../stores/ordersStore';
 import { httpsCallable } from 'firebase/functions';
 import { functions } from '../firebase';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSettingsStore } from '../stores/settingsStore';
+import PrintConfirmModal from './PrintConfirmModal';
 
 const BatchView = () => {
   const { groups, loading, toggleGroupItemOptimistically } = useOrdersStore();
 
   const toggleUnit = httpsCallable(functions, 'toggleGroupUnit');
   const { dueDate } = useSettingsStore();
+
+  // State for print confirmation modal
+  const [showPrintModal, setShowPrintModal] = useState(false);
 
   // Debug logging
   useEffect(() => {
@@ -24,21 +28,29 @@ const BatchView = () => {
         groupKey: group.key,
         orderId: progressItem.orderId,
         lineItemId: progressItem.lineItemId,
-        unitIndex: progressItem.unitIndex
+        unitIndex: progressItem.unitIndex,
+        currentCompleted: progressItem.completed,
       });
 
       // Optimistic UI update - update immediately for better UX
-      toggleGroupItemOptimistically(group.key, progressItem.orderId, progressItem.lineItemId);
+      // Temporarily disabled to debug Firebase function
+      // toggleGroupItemOptimistically(group.key, progressItem.orderId, progressItem.lineItemId, progressItem.unitIndex);
 
       // Send request to Firebase using the new structure
+      console.log('Sending Firebase request...');
       const result = await toggleUnit({
         day: dueDate,
         groupKey: group.key,
         orderId: progressItem.orderId,
-        lineItemId: progressItem.lineItemId
+        lineItemId: progressItem.lineItemId,
+        unitIndex: progressItem.unitIndex
       });
 
-      console.log('Toggle result:', result);
+      console.log('Firebase toggle result:', result);
+
+      // After Firebase response, manually update the state
+      console.log('Manually updating state after Firebase response...');
+      toggleGroupItemOptimistically(group.key, progressItem.orderId, progressItem.lineItemId, progressItem.unitIndex);
     } catch (error) {
       console.error('Error toggling unit:', error);
       console.error('Error details:', {
@@ -51,338 +63,51 @@ const BatchView = () => {
     }
   };
 
-  const handlePrintAllCards = () => {
-    // Create a new window for printing all cards
-    const printWindow = window.open('', '_blank', 'width=600,height=800');
-    if (!printWindow) return;
+  async function waitForWindowClose(win: Window, timeoutMs = 5 * 60 * 1000) {
+    const started = Date.now();
+    return new Promise<void>((resolve) => {
+      const timer = setInterval(() => {
+        if (win.closed || Date.now() - started > timeoutMs) {
+          clearInterval(timer);
+          resolve();
+        }
+      }, 200);
+    });
+  }
 
-    // Create the print content for all cards
-    const printContent = `
+  // Shared function to generate production card HTML content
+  const generateProductionCardHTML = (group: GroupUnit, pageIndex = 0, totalPages = 1) => {
+    return `
       <!DOCTYPE html>
       <html>
       <head>
-        <title>All Production Cards - ${dueDate}</title>
-        <style>
-          @media print {
-            @page {
-              margin: 0;
-              size: 80mm auto;
-            }
-            body {
-              margin: 0;
-              margin-top: 20px;
-              padding: 0;
-            }
-            .no-print { display: none; }
-            .card { page-break-after: always; }
-            .card:last-child { page-break-after: auto; }
-          }
-          
-          body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: white;
-            color: black;
-          }
-          
-          .card {
-            background: white;
-            padding: 16px;
-            max-width: 70mm;
-            margin: 0 auto;
-            page-break-inside: avoid;
-            border: 1px solid black;
-          }
-          
-          .header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            text-align: center;
-            border-bottom: 1px solid black;
-            padding-bottom: 6px;
-          }
-          
-          .date {
-            color: black;
-            font-size: 12px;
-          }
-          
-          .total-section {
-            display: flex;
-            flex-direction: row;
-            gap: 6px;
-            align-items: center;
-          }
-          
-          .total-text {
-            font-weight: 500;
-            color: black;
-            font-size: 16px;
-          }
-          
-          .product-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: black;
-            margin-bottom: 4px;
-            line-height: 1.3;
-          }
-          
-          .size-badge {
-            display: inline-block;
-            background: white;
-            border: 1px solid black;
-            padding: 2px 4px;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 14px;
-            color: black;
-          }
-          
-          .options-section {
-            margin: 12px 0;
-            border: 1px solid black;
-            padding: 6px;
-          }
-          
-          .option-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 3px 0;
-            padding: 2px 0;
-            gap: 6px;
-            border-bottom: 1px dotted black;
-          }
-          
-          .option-item:last-child {
-            border-bottom: none;
-          }
-          
-          .option-text {
-            font-size: 11px;
-            color: black;
-            font-weight: 500;
-            flex: 1;
-          }
-          
-          .option-count {
-            padding: 0px 4px;
-            border: 1px solid black;
-            border-radius: 3px;
-            font-size: 11px;
-            font-weight: 500;
-            min-width: 18px;
-            text-align: center;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            color: black;
-          }
-          
-          .unit-buttons {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 3px;
-            margin: 8px 0;
-          }
-          
-          .unit-button {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            border: 2px solid black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 600;
-            color: black;
-            background: white;
-            position: relative;
-          }
-          
-          .unit-button.completed {
-            background: white !important;
-            border-color: black !important;
-            color: black !important;
-          }
-          
-          .unit-button.completed::after {
-             content: '';
-             position: absolute;
-             top: 50%;
-             left: 50%;
-             width: 28px;
-             height: 2px;
-             background: black !important;
-             border-radius: 1px;
-             transform: translate(-50%, -50%) rotate(-45deg);
-             z-index: 10;
-           }
-          
-          .card-index {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 8px;
-          }
-          
-          .index-text {
-            font-size: 9px;
-            color: black;
-            font-weight: 500;
-          }
-          
-          .print-controls {
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid black;
-          }
-          
-          .print-btn {
-            background: black;
-            color: white;
-            border: 1px solid black;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 0 6px;
-            font-size: 12px;
-            font-weight: 500;
-          }
-          
-          .close-btn {
-            background: white;
-            color: black;
-            border: 1px solid black;
-          }
-        </style>
-      </head>
-      <body>
-      <!-- Print Controls -->
-        <div class="no-print print-controls">
-          <button class="print-btn" onclick="window.print()">🖨️ Print All Tickets</button>
-          <button class="print-btn close-btn" onclick="window.close()">❌ Close</button>
-        </div>
-        
-        ${groups
-        .filter(group => !group.productTitle.includes("Tip"))
-        .map((group, groupIndex) => `
-          <div class="card">
-            <!-- Header Row -->
-            <div class="header-row">
-              <div class="date">${dueDate}</div>
-              <div class="total-section">
-                <div class="total-text">Total: ${group.need}</div>
-              </div>
-            </div>
-
-            <!-- Product Title -->
-            <h3 class="product-title">${group.productTitle.replace(/\([^)]*\)/g, "")}</h3>
-            
-            <!-- Size Badge -->
-            ${group.variantSize ? `<div class="size-badge">${group.variantSize.replace(/\([^)]*\)/g, "")}</div>` : ''}
-
-            <!-- Selected Options -->
-            ${group.selectedOptions && group.selectedOptions.length > 0 ? `
-            <div class="options-section">
-              ${group.selectedOptions.map((option, index) => {
-          let optionText = option.option
-            .replace(/\([^)]*\)/g, "")
-            .replace("Add Message +$3", "Yes")
-            .replace("Add Message + $3", "Yes")
-            .replace("Add Chocolate Plaque", "")
-            .replace("thanks", "")
-            .replace("+$3", "")
-            .replace(/,[^,]*$/, "")
-            .replace("Title: Default Title", "")
-            .replace('6" Add Extra 1 Unit +$10', "Yes")
-            .replace('6" - Add Extra 1 Unit +$10', "Yes");
-
-          if (!optionText) return '';
-
-          return `
-                  <div class="option-item">
-                    <span class="option-text">${index + 1}. ${optionText}</span>
-                    <span class="option-count">x ${option.count}</span>
-                  </div>
-                `;
-        }).join('')}
-            </div>
-            ` : ''}
-
-            <!-- Unit Buttons -->
-            <div class="unit-buttons">
-              ${Array.from({ length: group.need }, (_, index) => `
-                <div class="unit-button ${group.progress[index] ? 'completed' : ''}">
-                  ${index + 1}
-                </div>
-              `).join('')}
-            </div>
-
-            <!-- Card Index -->
-            <div class="card-index">
-              <span class="index-text">Page ${groupIndex + 1} / ${groups.filter(g => !g.productTitle.includes("Tip")).length}</span>
-            </div>
-          </div>
-        `).join('')}
-
-        
-      </body>
-      </html>
-    `;
-
-    // Write content to the new window
-    printWindow.document.write(printContent);
-    printWindow.document.close();
-  };
-
-  const handlePrintCard = (group: GroupUnit) => {
-    // Create a new window for printing
-    const printWindow = window.open('', '_blank', 'width=500,height=700');
-    if (!printWindow) return;
-
-    // Create the print content that matches the card design exactly
-    const printContent = `
-      <!DOCTYPE html>
-      <html>
-      <head>
+        <meta charset="utf-8" />
         <title>Production Card - ${group.productTitle}</title>
         <style>
           @media print {
-            @page {
-              margin: 0;
-              size: 80mm auto;
-            }
+          @page {
+             margin: 0;
+             size: auto; /* use printer's default paper width */
+          }
             body {
               margin: 0;
               padding: 0;
             }
             .no-print { display: none; }
           }
-          
+
           body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
-            padding: 10px;
             background: white;
             color: black;
           }
-          
+
           .card {
             background: white;
-            padding: 16px;
-            max-width: 70mm;
             margin: 0 auto;
-            border: 1px solid black;
           }
-          
+
           .header-row {
             display: flex;
             justify-content: space-between;
@@ -392,30 +117,26 @@ const BatchView = () => {
             border-bottom: 1px solid black;
             padding-bottom: 6px;
           }
-           
+
           .date {
             color: black;
-            font-size: 12px;
+            font-size: 16px;
+            font-weight: 500;
           }
-           
+
           .total-section {
             display: flex;
             flex-direction: row;
             gap: 6px;
             align-items: center;
           }
-           
+
           .total-text {
             font-weight: 500;
             color: black;
             font-size: 16px;
           }
-           
-          .print-icon {
-            font-size: 14px;
-            color: black;
-          }
-           
+
           .product-title {
             font-size: 16px;
             font-weight: 600;
@@ -423,7 +144,7 @@ const BatchView = () => {
             margin-bottom: 4px;
             line-height: 1.3;
           }
-           
+
           .size-badge {
             display: inline-block;
             background: white;
@@ -434,13 +155,13 @@ const BatchView = () => {
             font-size: 14px;
             color: black;
           }
-           
+
           .options-section {
             margin: 12px 0;
             border: 1px solid black;
             padding: 6px;
           }
-           
+
           .option-item {
             display: flex;
             justify-content: space-between;
@@ -450,18 +171,18 @@ const BatchView = () => {
             gap: 6px;
             border-bottom: 1px dotted black;
           }
-          
+
           .option-item:last-child {
             border-bottom: none;
           }
-           
+
           .option-text {
             font-size: 11px;
             color: black;
             font-weight: 500;
             flex: 1;
           }
-           
+
           .option-count {
             padding: 0px 4px;
             border: 1px solid black;
@@ -477,14 +198,30 @@ const BatchView = () => {
             background: white;
             color: black;
           }
-           
+
           .unit-buttons {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 3px;
             margin: 8px 0;
           }
-           
+
+          .unit-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+          }
+
+          .unit-label {
+            font-size: 9px;
+            color: black;
+            text-align: center;
+            font-weight: 500;
+            margin-bottom: 10px;
+          }
+
           .unit-button {
             width: 32px;
             height: 32px;
@@ -493,51 +230,62 @@ const BatchView = () => {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 20px;
             font-weight: 600;
             color: black;
             background: white;
             position: relative;
           }
-          
+
           .unit-button.completed {
             background: white !important;
             border-color: black !important;
             color: black !important;
           }
-          
+
           .unit-button.completed::after {
              content: '';
              position: absolute;
              top: 50%;
              left: 50%;
              width: 28px;
-             height: 2px;
+             height: 1px;
              background: black !important;
              border-radius: 1px;
              transform: translate(-50%, -50%) rotate(-45deg);
              z-index: 10;
            }
-          
+
+          /* Print-specific styles to ensure strike-through is visible */
+          @media print {
+            .unit-button.completed::after {
+              background: black !important;
+              color: black !important;
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
+              border: 1px solid black !important;
+            }
+          }
+
           .card-index {
             display: flex;
             justify-content: flex-end;
             margin-top: 8px;
           }
-           
+
           .index-text {
             font-size: 9px;
             color: black;
             font-weight: 500;
           }
-           
+
           .print-controls {
             text-align: center;
             margin-top: 16px;
             padding-top: 16px;
             border-top: 1px solid black;
           }
-           
+
           .print-btn {
             background: black;
             color: white;
@@ -549,19 +297,11 @@ const BatchView = () => {
             font-size: 12px;
             font-weight: 500;
           }
-          
-          .print-btn:hover {
-            background: black;
-          }
-          
+
           .close-btn {
             background: white;
             color: black;
             border: 1px solid black;
-          }
-          
-          .close-btn:hover {
-            background: white;
           }
         </style>
       </head>
@@ -569,6 +309,7 @@ const BatchView = () => {
         <div class="card">
           <!-- Header Row -->
           <div class="header-row">
+          <h3 style="text-align: center;">Batch</h3>
             <div class="date">${dueDate}</div>
             <div class="total-section">
               <div class="total-text">Total: ${group.need}</div>
@@ -577,7 +318,7 @@ const BatchView = () => {
 
           <!-- Product Title -->
           <h3 class="product-title">${group.productTitle.replace(/\([^)]*\)/g, "")}</h3>
-          
+
           <!-- Size Badge -->
           ${group.variantSize ? `<div class="size-badge">${group.variantSize.replace(/\([^)]*\)/g, "")}</div>` : ''}
 
@@ -600,27 +341,30 @@ const BatchView = () => {
       if (!optionText) return '';
 
       return `
-                <div class="option-item">
-                  <span class="option-text">${index + 1}. ${optionText}</span>
-                  <span class="option-count">x ${option.count}</span>
-                </div>
-              `;
+              <div class="option-item">
+                <span class="option-text">${index + 1}. ${optionText}</span>
+                <span class="option-count">x ${option.count}</span>
+              </div>
+            `;
     }).join('')}
           </div>
           ` : ''}
 
           <!-- Unit Buttons -->
           <div class="unit-buttons">
-            ${Array.from({ length: group.need }, (_, index) => `
-              <div class="unit-button ${group.progress[index] ? 'completed' : ''}">
-                ${index + 1}
+            ${group.progressItems?.filter(item => !item.isVoided).map((item, index) => `
+              <div class="unit-container">
+                <div class="unit-button ${item.completed === 1 ? 'completed' : ''}">
+                  ${index + 1}
+                </div>
+                <div class="unit-label">${item.orderNumber + (item.isVoided ? " Voided" : "")}</div>
               </div>
             `).join('')}
           </div>
 
           <!-- Card Index -->
           <div class="card-index">
-            <span class="index-text">Page ${groups.findIndex(g => g.key === group.key) + 1} / ${groups.length}</span>
+            <span class="index-text">Page ${pageIndex + 1} / ${totalPages}</span>
           </div>
         </div>
 
@@ -629,13 +373,59 @@ const BatchView = () => {
           <button class="print-btn" onclick="window.print()">🖨️ Print Card</button>
           <button class="print-btn close-btn" onclick="window.close()">❌ Close</button>
         </div>
+
+        <script>
+          try {
+            window.onafterprint = function() { try { window.close(); } catch (e) {} };
+            window.onload = function() {
+              setTimeout(function(){ try { window.focus(); window.print(); } catch (e) {} }, 50);
+            };
+          } catch (e) { /* no-op */ }
+        </script>
       </body>
       </html>
     `;
+  };
 
-    // Write content to the new window
-    printWindow.document.write(printContent);
-    printWindow.document.close();
+  const handlePrintAllCards = () => {
+    setShowPrintModal(true);
+  };
+
+  const confirmPrintAllCards = async () => {
+    setShowPrintModal(false);
+
+    const filteredGroups = groups.filter(group => !group.productTitle.includes("Tip"));
+
+    for (let i = 0; i < filteredGroups.length; i++) {
+      const group = filteredGroups[i];
+      const printWindow = window.open('', '_blank', 'width=600,height=800');
+      if (!printWindow) {
+        console.warn('Popup blocked while opening print window for group:', group?.productTitle);
+        continue;
+      }
+
+      const cardContent = generateProductionCardHTML(group, i, filteredGroups.length);
+      printWindow.document.write(cardContent);
+      printWindow.document.close();
+
+      // Wait until the window closes (after printing), then continue with next card
+      await waitForWindowClose(printWindow);
+    }
+  };
+
+  const cancelPrintAllCards = () => {
+    setShowPrintModal(false);
+  };
+
+  const handlePrintCard = (group: GroupUnit) => {
+    // Create a new window for printing
+    const printWindow = window.open('', '_blank', 'width=600,height=800');
+    if (!printWindow) return;
+
+    const groupIndex = groups.findIndex(g => g.key === group.key);
+    const cardContent = generateProductionCardHTML(group, groupIndex, groups.length);
+    printWindow.document.write(cardContent);
+    // printWindow.document.close();
   };
 
   if (loading) {
@@ -837,6 +627,15 @@ const BatchView = () => {
           )
         })}
       </div>
+
+      {/* Print Confirmation Modal */}
+      <PrintConfirmModal
+        isOpen={showPrintModal}
+        onConfirm={confirmPrintAllCards}
+        onCancel={cancelPrintAllCards}
+        title="Print All Production Cards"
+        message={`You will print ${groups.filter(g => !g.productTitle.includes("Tip")).length} production cards and cannot stop the process.`}
+      />
     </div>
   );
 };

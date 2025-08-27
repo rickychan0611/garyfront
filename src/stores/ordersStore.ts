@@ -73,7 +73,7 @@ interface OrdersState {
   loadOrders: (from: string, to: string, excludeTag: string, dueDate?: string) => Promise<void>;
 
   toggleGroupUnitOptimistically: (groupKey: string, unitIndex: number) => void;
-  toggleGroupItemOptimistically: (groupKey: string, orderId: string, lineItemId: string) => void;
+  toggleGroupItemOptimistically: (groupKey: string, orderId: string, lineItemId: string, unitIndex: number) => void;
   unsubscribe: () => void;
 }
 
@@ -201,13 +201,13 @@ export const useOrdersStore = create<OrdersState>((set, get) => {
       }));
     },
 
-    toggleGroupItemOptimistically: (groupKey: string, orderId: string, lineItemId: string) => {
+    toggleGroupItemOptimistically: (groupKey: string, orderId: string, lineItemId: string, unitIndex: number) => {
       set((state) => ({
         groups: state.groups.map(g => {
           if (g.key === groupKey && g.progressItems) {
             const newProgressItems = [...g.progressItems];
             const itemIndex = newProgressItems.findIndex(p =>
-              p.orderId === orderId && p.lineItemId === lineItemId
+              p.orderId === orderId && p.lineItemId === lineItemId && p.unitIndex === unitIndex
             );
 
             if (itemIndex !== -1) {
@@ -216,16 +216,12 @@ export const useOrdersStore = create<OrdersState>((set, get) => {
               item.completed = item.completed === 0 ? 1 : 0;
               newProgressItems[itemIndex] = item;
 
-              // Recalculate legacy progress array
+              // Recalculate legacy progress array - each progressItem represents exactly 1 unit
               const newProgress: boolean[] = [];
               newProgressItems.forEach(progressItem => {
                 if (!progressItem.isVoided) {
-                  for (let i = 0; i < progressItem.completed; i++) {
-                    newProgress.push(true);
-                  }
-                  for (let i = 0; i < progressItem.quantity - progressItem.completed; i++) {
-                    newProgress.push(false);
-                  }
+                  // Since quantity is always 1, just add the completion status directly
+                  newProgress.push(progressItem.completed === 1);
                 }
               });
 

@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useOrdersStore, Order } from '../stores/ordersStore';
 import { useSettingsStore } from '../stores/settingsStore';
 import { useNavigate } from 'react-router-dom';
+import PrintConfirmModal from './PrintConfirmModal';
 
 interface MessageTicket {
   id: string;
@@ -14,6 +15,9 @@ const MessageTicketsPage = () => {
   const { orders, loading } = useOrdersStore();
   const { dueDate } = useSettingsStore();
   const navigate = useNavigate();
+
+  // State for print confirmation modal
+  const [showPrintModal, setShowPrintModal] = useState(false);
 
   // Filter orders with messages and create message tickets
   const messageTickets = useMemo(() => {
@@ -151,7 +155,7 @@ const MessageTicketsPage = () => {
     }
     
     .ref-number {
-      font-size: 12px;
+      font-size: 17px;
       font-weight: bold;
       color: black;
     }
@@ -273,6 +277,7 @@ const MessageTicketsPage = () => {
       <!DOCTYPE html>
       <html>
       <head>
+        <meta charset="utf-8" />
         <title>Message Ticket - ${ticket.order.number}</title>
         <style>
           ${getPrintStyles(false)}
@@ -280,12 +285,21 @@ const MessageTicketsPage = () => {
       </head>
       <body>
         ${generateMessageTicketHTML(ticket, false)}
-        
+
         <!-- Print Controls -->
         <div class="no-print print-controls">
           <button class="print-btn" onclick="window.print()">🖨️ Print Ticket</button>
           <button class="print-btn close-btn" onclick="window.close()">❌ Close</button>
         </div>
+
+        <script>
+          try {
+            window.onafterprint = function() { try { window.close(); } catch (e) {} };
+            window.onload = function() {
+              setTimeout(function(){ try { window.focus(); window.print(); } catch (e) {} }, 50);
+            };
+          } catch (e) { /* no-op */ }
+        </script>
       </body>
       </html>
     `;
@@ -294,37 +308,76 @@ const MessageTicketsPage = () => {
     printWindow.document.close();
   };
 
+  async function waitForWindowClose(win: Window, timeoutMs = 5 * 60 * 1000) {
+    const started = Date.now();
+    return new Promise<void>((resolve) => {
+      const timer = setInterval(() => {
+        if (win.closed || Date.now() - started > timeoutMs) {
+          clearInterval(timer);
+          resolve();
+        }
+      }, 200);
+    });
+  }
+
   const handlePrintAllTickets = () => {
+    setShowPrintModal(true);
+  };
+
+  const confirmPrintAllTickets = async () => {
+    setShowPrintModal(false);
+
     if (messageTickets.length === 0) return;
-    
-    const printWindow = window.open('', '_blank', 'width=700,height=900');
-    if (!printWindow) return;
 
-    const printContent = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>All Message Tickets - ${dueDate}</title>
-        <style>
-          ${getPrintStyles(true)}
-        </style>
-      </head>
-      <body>
-        <!-- Print Controls -->
-        <div class="no-print print-controls">
-          <button class="print-btn" onclick="window.print()">🖨️ Print All Tickets</button>
-          <button class="print-btn close-btn" onclick="window.close()">❌ Close</button>
-        </div>
-        
-        ${messageTickets.map((ticket, ticketIndex) =>
-          generateMessageTicketHTML(ticket, true, ticketIndex, messageTickets.length)
-        ).join('')}
-      </body>
-      </html>
-    `;
+    for (let i = 0; i < messageTickets.length; i++) {
+      const ticket = messageTickets[i];
+      const printWindow = window.open('', '_blank', 'width=600,height=800');
+      if (!printWindow) {
+        console.warn('Popup blocked while opening print window for ticket:', ticket?.order?.number);
+        continue;
+      }
 
-    printWindow.document.write(printContent);
-    printWindow.document.close();
+      const singleTicketContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8" />
+          <title>Message Ticket - ${ticket.order.number}</title>
+          <style>
+            ${getPrintStyles(false)}
+          </style>
+        </head>
+        <body>
+          ${generateMessageTicketHTML(ticket, false)}
+
+          <!-- Print Controls -->
+          <div class="no-print print-controls">
+            <button class="print-btn" onclick="window.print()">🖨️ Print Ticket</button>
+            <button class="print-btn close-btn" onclick="window.close()">❌ Close</button>
+          </div>
+
+          <script>
+            try {
+              window.onafterprint = function() { try { window.close(); } catch (e) {} };
+              window.onload = function() {
+                setTimeout(function(){ try { window.focus(); window.print(); } catch (e) {} }, 50);
+              };
+            } catch (e) { /* no-op */ }
+          </script>
+        </body>
+        </html>
+      `;
+
+      printWindow.document.write(singleTicketContent);
+      printWindow.document.close();
+
+      // Wait until the window closes (after printing), then continue with next ticket
+      await waitForWindowClose(printWindow);
+    }
+  };
+
+  const cancelPrintAllTickets = () => {
+    setShowPrintModal(false);
   };
 
   if (loading) {
@@ -339,6 +392,12 @@ const MessageTicketsPage = () => {
   if (messageTickets.length === 0) {
     return (
       <div className="text-center py-12">
+        <button
+            onClick={() => navigate('/orders')}
+            className="w-[150px] px-3 py-2 bg-gray-500 text-white text-sm font-semibold rounded hover:bg-gray-600 transition-colors flex items-center gap-2"
+          >
+            ← Back to Orders
+          </button>
         <div className="flex items-center justify-center mb-4">
           <div className="text-6xl">📝</div>
         </div>
@@ -442,6 +501,15 @@ const MessageTicketsPage = () => {
           </div>
         ))}
       </div>
+
+      {/* Print Confirmation Modal */}
+      <PrintConfirmModal
+        isOpen={showPrintModal}
+        onConfirm={confirmPrintAllTickets}
+        onCancel={cancelPrintAllTickets}
+        title="Print All Message Tickets"
+        message={`You will print ${messageTickets.length} message tickets and cannot stop the process.`}
+      />
     </div>
   );
 };
